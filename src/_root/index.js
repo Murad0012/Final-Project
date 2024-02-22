@@ -1,0 +1,5 @@
+export { default as Home} from './pages/home/Home'
+export { default as Explore} from './pages/explore/Explore'
+export { default as Friends} from './pages/friends/Friends'
+export { default as Saved} from './pages/saved/Saved'
+export { default as CreatePost} from './pages/create/CreatePost'
