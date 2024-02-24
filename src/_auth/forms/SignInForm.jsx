@@ -1,8 +1,14 @@
 import React from "react";
+import { useState } from "react";
 import img1 from "../imgs/Logo.png";
 import { Link } from "react-router-dom";
 
 function SignInForm() {
+  const [checktype, setChecktype] = useState(true);
+
+  const handleClick = () => {
+    setChecktype(!checktype);
+  };
   return (
     <div className="bg-colors-color1 px-10 py-14 rounded-3xl">
       <div className="flex items-center justify-center gap-2">
@@ -20,7 +26,7 @@ function SignInForm() {
             Username
           </label>
           <input
-            placeholder="Enter your username"
+            placeholder="Enter username"
             className="w-full border-2 border-gray-100 rounded-xl p-4 bg-transparent mt-1.5 outline-none active:border-colors-color3"
             id="username"
           />
@@ -30,10 +36,20 @@ function SignInForm() {
             Password
           </label>
           <input
-            placeholder="Enter your password"
+            placeholder="Enter password"
             className="w-full border-2 border-gray-100 rounded-xl p-4 bg-transparent mt-1.5 outline-none active:border-colors-color3"
             id="password"
+            type={checktype ? "password" : "text"}
           />
+        </div>
+        <div className="mt-4 flex gap-1">
+          <input
+            className="border border-gray-100 w-5 h-5"
+            type="checkbox"
+            id="checkbox"
+            onClick={handleClick}
+          ></input>
+          <label htmlFor="checkbox">Show password</label>
         </div>
         <div className="mt-10">
           <button
