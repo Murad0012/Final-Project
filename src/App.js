@@ -15,6 +15,7 @@ function App() {
         <Routes>
           {/* Root Layout */}
           <Route element={<RootLayout />}>
+            <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/friends" element={<Friends />} />

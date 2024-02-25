@@ -23,6 +23,9 @@ module.exports = {
           "color2":"#010001",
           "color3":"#8685ff",
         },
+        height:{
+          "sidebar":"800px"
+        }
       }
     },
   },

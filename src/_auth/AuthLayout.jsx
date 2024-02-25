@@ -3,10 +3,7 @@ import { Outlet } from "react-router-dom";
 
 function AuthLayout() {
   return (
-    <div
-      className="flex w-full max-sm:bg-colors-color1"
-      style={{ height: "900px" }}
-    >
+    <div className="flex w-full h-screen max-sm:bg-colors-color1">
       <div className="w-full h-screen flex items-center justify-center xl:w-1/2">
         <Outlet />
       </div>
