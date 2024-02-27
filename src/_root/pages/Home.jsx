@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 import img3 from "../imgs/Netflix logo.jpg";
 import img4 from "../imgs/netflixPost.png";
@@ -11,7 +12,12 @@ import img9 from "../imgs/blenderpost.png";
 import { FaHeart } from "react-icons/fa";
 import { HiOutlineSave } from "react-icons/hi";
 
-function home() {
+function Home() {
+  const [isClicked, setIsClicked] = useState(true);
+
+  const handleClick = () => {
+    setIsClicked(!isClicked);
+  };
   return (
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1000px]:ml-0 max-[1000px]:mt-[60px]">
       <div className="flex max-[1000px]:pt-[20px] pb-[100px]">
@@ -39,8 +45,8 @@ function home() {
                     </p>
                   </div>
                 </div>
-                <div className="w-100% max-[550px]:pl-[18px]">
-                  <h1 className="text-[20px] font-bold max-[550px]:text-[18px]">
+                <div className="w-100% max-[550px]:pl-[14px]">
+                  <h1 className="text-[20px] font-bold max-[550px]:text-[14px]">
                     Thank me later
                   </h1>
                   <div className="flex gap-2">
@@ -54,7 +60,12 @@ function home() {
                   className="w-[650px] object-cover max-[800px]:w-[480px] max-[550px]:w-[100%] rounded-none"
                 />
                 <div className="flex justify-between w-100% max-[550px]:px-[20px]">
-                  <FaHeart className="text-[28px]" />
+                  <div className="flex items-center gap-3">
+                    <FaHeart className="text-[28px] w-[29px] transition duration-200	"
+                    style={{ color: isClicked ? 'white' : 'red'}}
+                    onClick={handleClick}/>
+                    <p>120</p>
+                  </div>
                   <HiOutlineSave className="text-[28px]" />
                 </div>
               </div>
@@ -79,8 +90,8 @@ function home() {
                     </p>
                   </div>
                 </div>
-                <div className="w-100% max-[550px]:pl-[18px]">
-                  <h1 className="text-[20px] font-bold max-[550px]:text-[18px]">
+                <div className="w-100% max-[550px]:pl-[14px]">
+                  <h1 className="text-[20px] font-bold max-[550px]:text-[14px]">
                     ⚔️ Avowed ⚔️ Coming to Xbox Series X|S, PC, and Game Pass
                     Fall 2024 |
                   </h1>
@@ -96,7 +107,12 @@ function home() {
                   className="w-[650px] object-cover max-[800px]:w-[480px] max-[550px]:w-[100%] rounded-none"
                 />
                 <div className="flex justify-between w-100% max-[550px]:px-[20px]">
-                  <FaHeart className="text-[28px]" />
+                  <div className="flex items-center gap-3">
+                    <FaHeart className="text-[28px] w-[29px] transition duration-200	"
+                    style={{ color: isClicked ? 'white' : 'red'}}
+                    onClick={handleClick}/>
+                    <p>290</p>
+                  </div>
                   <HiOutlineSave className="text-[28px]" />
                 </div>
               </div>
@@ -121,8 +137,8 @@ function home() {
                     </p>
                   </div>
                 </div>
-                <div className="w-100% max-[550px]:pl-[18px]">
-                  <h1 className="text-[20px] font-bold max-[550px]:text-[18px]">
+                <div className="w-100% max-[550px]:pl-[14px]">
+                  <h1 className="text-[20px] font-bold max-[550px]:text-[14px]">
                     The CHARGE ⚡️open movie by Blender Studio is live on
                     YouTube - Check it out!{" "}
                   </h1>
@@ -137,7 +153,12 @@ function home() {
                   className="w-[650px] object-cover max-[800px]:w-[480px] max-[550px]:w-[100%] rounded-none"
                 />
                 <div className="flex justify-between w-100% max-[550px]:px-[20px]">
-                  <FaHeart className="text-[28px]" />
+                  <div className="flex items-center gap-3">
+                    <FaHeart className="text-[28px] w-[29px] transition duration-200	"
+                    style={{ color: isClicked ? 'white' : 'red'}}
+                    onClick={handleClick}/>
+                    <p>839</p>
+                  </div>
                   <HiOutlineSave className="text-[28px]" />
                 </div>
               </div>
@@ -186,4 +207,4 @@ function home() {
   );
 }
 
-export default home;
+export default Home;

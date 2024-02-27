@@ -19,9 +19,9 @@ function RootLayout() {
 
   return (
     <div className="flex flex-col max-[800px]:bg-colors-color1">
-      <div className="w-screen fixed hidden max-[1000px]:block">
+      <div className="w-screen fixed hidden max-[1000px]:block z-50">
         <div className="flex items-center bg-colors-color1 h-[60px] justify-center">
-          <div className="flex w-[92%] justify-between">
+          <div className="flex w-[95%] justify-between">
             <div className="flex items-center gap-1">
               <img src={img1} className="w-[40px]" />
               <h1 className="text-[22px] text-colors-color3 font-bold">
@@ -38,7 +38,7 @@ function RootLayout() {
           </div>
         </div>
         <div className="flex justify-center bg-colors-color1 fixed bottom-0 left-0 h-[60px] w-screen">
-          <ul className="flex h-[100%] items-center justify-between w-[90%]">
+          <ul className="flex h-[100%] items-center justify-between w-[92%]">
             <li
               className="p-[9px] rounded-[8px] hover:bg-[#211e21]"
               style={{
