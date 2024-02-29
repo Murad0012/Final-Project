@@ -61,9 +61,11 @@ function Home() {
                 />
                 <div className="flex justify-between w-100% max-[550px]:px-[20px]">
                   <div className="flex items-center gap-3">
-                    <FaHeart className="text-[28px] w-[29px] transition duration-200	"
-                    style={{ color: isClicked ? 'white' : 'red'}}
-                    onClick={handleClick}/>
+                    <FaHeart
+                      className="text-[28px] w-[29px] transition duration-200	"
+                      style={{ color: isClicked ? "white" : "red" }}
+                      onClick={handleClick}
+                    />
                     <p>120</p>
                   </div>
                   <HiOutlineSave className="text-[28px]" />
@@ -108,9 +110,11 @@ function Home() {
                 />
                 <div className="flex justify-between w-100% max-[550px]:px-[20px]">
                   <div className="flex items-center gap-3">
-                    <FaHeart className="text-[28px] w-[29px] transition duration-200	"
-                    style={{ color: isClicked ? 'white' : 'red'}}
-                    onClick={handleClick}/>
+                    <FaHeart
+                      className="text-[28px] w-[29px] transition duration-200	"
+                      style={{ color: isClicked ? "white" : "red" }}
+                      onClick={handleClick}
+                    />
                     <p>290</p>
                   </div>
                   <HiOutlineSave className="text-[28px]" />
@@ -154,9 +158,11 @@ function Home() {
                 />
                 <div className="flex justify-between w-100% max-[550px]:px-[20px]">
                   <div className="flex items-center gap-3">
-                    <FaHeart className="text-[28px] w-[29px] transition duration-200	"
-                    style={{ color: isClicked ? 'white' : 'red'}}
-                    onClick={handleClick}/>
+                    <FaHeart
+                      className="text-[28px] w-[29px] transition duration-200	"
+                      style={{ color: isClicked ? "white" : "red" }}
+                      onClick={handleClick}
+                    />
                     <p>839</p>
                   </div>
                   <HiOutlineSave className="text-[28px]" />
