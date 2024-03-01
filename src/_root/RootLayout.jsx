@@ -19,7 +19,7 @@ function RootLayout() {
 
   return (
     <div className="flex flex-col max-[800px]:bg-colors-color1">
-      <div className="w-screen fixed hidden max-[1000px]:block z-50">
+      <div className="w-screen fixed hidden max-[1080px]:block z-50">
         <div className="flex items-center bg-colors-color1 h-[60px] justify-center">
           <div className="flex w-[95%] justify-between">
             <div className="flex items-center gap-1">
@@ -100,7 +100,7 @@ function RootLayout() {
       </div>
       <div
         className=" fixed w-[300px] bg-colSors-color1 flex items-center justify-center bg-colors-color1 h-screen max-[1590px]:w-[120px]
-      max-[1000px]:hidden"
+      max-[1080px]:hidden"
       >
         <div className="h-[95%] flex flex-col justify-between w-fit">
           <div className="w-fit flex flex-col gap-[40px] mt-[10px] max-[1590px]:items-center">

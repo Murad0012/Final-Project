@@ -25,9 +25,9 @@ function Friends() {
   };
 
   return (
-    <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1000px]:ml-0 max-[1000px]:mt-[60px]">
+    <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px]">
       <div className="flex flex-col">
-        <div className="w-[880px] py-8 flex gap-[80px] items-center max-[1000px]:w-[750px] max-[1000px]:gap-[60px] max-[800px]:w-[650px] max-[690px]:w-[550px] max-[600px]:w-[450px] max-[600px]:gap-[15px] max-[480px]:w-[350px] max-[380px]:w-[300px]">
+        <div className="w-[880px] py-8 flex gap-[80px] items-center max-[1080px]:w-[750px] max-[1080px]:gap-[60px] max-[800px]:w-[650px] max-[690px]:w-[550px] max-[600px]:w-[450px] max-[600px]:gap-[15px] max-[480px]:w-[350px] max-[380px]:w-[300px]">
           <div
             className="flex items-center gap-[10px] border border-colors-color1 w-[550px] h-[60px] bg-colors-color1 p-[10px] rounded-[8px] transition duration-200 max-[800px]:bg-colors-color2"
             style={{ borderColor: isFocused ? "#8685ff" : "#0a090a" }}
@@ -67,7 +67,7 @@ function Friends() {
             </ul>
           </div>
         </div>
-        <div className="w-[880px] h-[100%] flex flex-col gap-[20px] max-[1000px]:w-[750px] max-[800px]:w-[650px] max-[690px]:w-[550px]  max-[600px]:w-[450px] max-[480px]:w-[350px] max-[380px]:w-[300px]">
+        <div className="w-[880px] h-[100%] flex flex-col gap-[20px] max-[1080px]:w-[750px] max-[800px]:w-[650px] max-[690px]:w-[550px]  max-[600px]:w-[450px] max-[480px]:w-[350px] max-[380px]:w-[300px]">
           <div className="flex items-center justify-between gap-[10px] p-[18px] pl-[14px] w-[450px] h-fit bg-colors-color1 rounded-[10px] border border-colors-color1 transition-all duration-200 max-[800px]:bg-colors-color2 max-[690px]:w-[320px] max-[380px]:w-[250px] hover:border-colors-color3">
             <div className="flex items-center gap-2">
               <img

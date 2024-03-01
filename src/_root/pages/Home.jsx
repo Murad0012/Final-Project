@@ -19,13 +19,13 @@ function Home() {
     setIsClicked(!isClicked);
   };
   return (
-    <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1000px]:ml-0 max-[1000px]:mt-[60px]">
-      <div className="flex max-[1000px]:pt-[20px] pb-[100px]">
-        <div className=" w-[850px] flex flex-col items-center max-[1000px]:w-fit">
-          <div className="w-[850px] my-8 pl-[85px] max-[1000px]:hidden">
+    <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px]">
+      <div className="flex max-[1080px]:pt-[20px] pb-[100px]">
+        <div className=" w-[850px] flex flex-col items-center max-[1080px]:w-fit">
+          <div className="w-[850px] my-8 pl-[85px] max-[1080px]:hidden">
             <h1 className="text-[30px] font-bold">Home Feed</h1>
           </div>
-          <div className="w-[850px] h-max flex flex-col items-center gap-[50px] max-[1000px]:w-fit">
+          <div className="w-[850px] h-max flex flex-col items-center gap-[50px] max-[1080px]:w-fit">
             <div
               className="w-[680px]  bg-colors-color1 rounded-[10px] flex flex-col gap-[20px] p-[1rem]
             max-[800px]:w-[500px] max-[550px]:p-0 max-[550px]:w-screen"
