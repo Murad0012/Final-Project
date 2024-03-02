@@ -22,7 +22,7 @@ function Home() {
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px]">
       <div className="flex max-[1080px]:pt-[20px] pb-[100px]">
         <div className=" w-[850px] flex flex-col items-center max-[1080px]:w-fit">
-          <div className="w-[850px] my-8 pl-[85px] max-[1080px]:hidden">
+          <div className="w-[850px] py-8 pl-[85px] max-[1080px]:hidden">
             <h1 className="text-[30px] font-bold">Home Feed</h1>
           </div>
           <div className="w-[850px] h-max flex flex-col items-center gap-[50px] max-[1080px]:w-fit">
@@ -172,7 +172,7 @@ function Home() {
           </div>
         </div>
         <div className=" flex flex-col max-[1410px]:hidden">
-          <div className="my-8">
+          <div className="py-8">
             <h1 className="text-[30px] font-bold">Make New Friends</h1>
           </div>
           <div className="flex flex-col gap-[25px]">

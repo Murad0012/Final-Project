@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
+
 import { FaHeart } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
+
 import img1 from "../imgs/jPost.webp";
 import img2 from "../imgs/Jlogo.jpg";
 import img3 from "../imgs/Polygon Runway Logo.jpg";
@@ -19,7 +21,7 @@ function Saved() {
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px]">
       <div className="flex">
         <div className="flex flex-col items-center">
-          <div className="w-[910px] my-8 flex items-center justify-between max-[950px]:w-[760px] max-[800px]:w-[610px] max-[650px]:w-[505px] max-[545px]:w-[385px] max-[410px]:w-[355px] max-[380px]:w-[310px]">
+          <div className="w-[910px] py-8 flex items-center justify-between max-[950px]:w-[760px] max-[800px]:w-[610px] max-[650px]:w-[505px] max-[545px]:w-[385px] max-[410px]:w-[355px] max-[380px]:w-[310px]">
             <h1 className="text-[30px] font-bold max-[650px]:text-[25px] max-[410px]:text-[23px]">
               Saved Posts
             </h1>
