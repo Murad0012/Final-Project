@@ -2,7 +2,6 @@ import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
-import { IoCreateOutline } from "react-icons/io5";
 
 function CreatePost() {
   // Character counter //
@@ -43,7 +42,7 @@ function CreatePost() {
       <div className="flex max-[1080px]:pb-[100px]">
         <div className="flex flex-col items-center">
           <div className="w-[850px] py-8 flex items-center gap-1 max-[920px]:w-[750px] max-[800px]:w-[650px] max-[720px]:w-[550px] max-[600px]:w-[450px] max-[520px]:w-[380px] max-[420px]:w-[320px] max-[360px]:w-[300px]">
-            <IoCreateOutline className="text-[32px]" />
+            <MdOutlineAddPhotoAlternate className="text-[32px]" />
             <h1 className="text-[30px] font-bold">Create Post</h1>
           </div>
           <div className="w-[850px] h-fit flex flex-col gap-[50px] max-[920px]:w-[750px] max-[800px]:w-[650px] max-[720px]:w-[550px] max-[600px]:w-[450px] max-[520px]:w-[380px] max-[420px]:w-[320px] max-[360px]:w-[300px]">
