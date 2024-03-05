@@ -50,9 +50,9 @@ function ProfileDetails() {
           <div className=" h-fit relative">
             <img
               src={img2}
-              className="w-[300px] h-[300px] object-cover max-[980px]:w-[260px] max-[980px]:h-[260px] max-[830px]:w-[210px] max-[830px]:h-[210px] max-[680px]:w-[170px] max-[680px]:h-[170px] max-[550px]:w-[130px] max-[550px]:h-[130px] max-[450px]:w-[90px] max-[450px]:h-[90px]"
+              className="w-[300px] h-[300px] object-cover max-[980px]:w-[260px] max-[980px]:h-[260px] max-[830px]:w-[210px] max-[830px]:h-[210px] max-[680px]:w-[170px] max-[680px]:h-[170px] max-[550px]:w-[130px] max-[550px]:h-[130px] max-[450px]:w-[96.7px] max-[450px]:h-[96.7px]"
             />
-            <div className="absolute bottom-0 w-[300px]  flex items-center gap-1 p-1 px-1.5 max-[980px]:w-[260px] max-[830px]:w-[210px] max-[680px]:w-[170px] max-[550px]:w-[130px] max-[450px]:w-[90px]">
+            <div className="absolute bottom-0 w-[300px]  flex items-center gap-1 p-1 px-1.5 max-[980px]:w-[260px] max-[830px]:w-[210px] max-[680px]:w-[170px] max-[550px]:w-[130px] max-[450px]:w-[96.7px]">
               <FaRegHeart className="text-colors-color3 text-[18px]" />
               <p className="text-[18px]">210</p>
             </div>
@@ -60,9 +60,9 @@ function ProfileDetails() {
           <div className=" h-fit relative">
             <img
               src={img3}
-              className="w-[300px] h-[300px] object-cover max-[980px]:w-[260px] max-[980px]:h-[260px] max-[830px]:w-[210px] max-[830px]:h-[210px] max-[680px]:w-[170px] max-[680px]:h-[170px] max-[550px]:w-[130px] max-[550px]:h-[130px] max-[450px]:w-[90px] max-[450px]:h-[90px]"
+              className="w-[300px] h-[300px] object-cover max-[980px]:w-[260px] max-[980px]:h-[260px] max-[830px]:w-[210px] max-[830px]:h-[210px] max-[680px]:w-[170px] max-[680px]:h-[170px] max-[550px]:w-[130px] max-[550px]:h-[130px] max-[450px]:w-[96.7px] max-[450px]:h-[96.7px]"
             />
-            <div className="absolute bottom-0 w-[300px]  flex items-center gap-1 p-1 px-1.5 max-[980px]:w-[260px] max-[830px]:w-[210px] max-[680px]:w-[170px] max-[550px]:w-[130px] max-[450px]:w-[90px]">
+            <div className="absolute bottom-0 w-[300px]  flex items-center gap-1 p-1 px-1.5 max-[980px]:w-[260px] max-[830px]:w-[210px] max-[680px]:w-[170px] max-[550px]:w-[130px] max-[450px]:w-[96.7px]">
               <FaRegHeart className="text-colors-color3 text-[18px]" />
               <p className="text-[18px]">210</p>
             </div>
@@ -70,9 +70,9 @@ function ProfileDetails() {
           <div className=" h-fit relative">
             <img
               src={img4}
-              className="w-[300px] h-[300px] object-cover max-[980px]:w-[260px] max-[980px]:h-[260px] max-[830px]:w-[210px] max-[830px]:h-[210px] max-[680px]:w-[170px] max-[680px]:h-[170px] max-[550px]:w-[130px] max-[550px]:h-[130px] max-[450px]:w-[90px] max-[450px]:h-[90px]"
+              className="w-[300px] h-[300px] object-cover max-[980px]:w-[260px] max-[980px]:h-[260px] max-[830px]:w-[210px] max-[830px]:h-[210px] max-[680px]:w-[170px] max-[680px]:h-[170px] max-[550px]:w-[130px] max-[550px]:h-[130px] max-[450px]:w-[96.7px] max-[450px]:h-[96.7px]"
             />
-            <div className="absolute bottom-0 w-[300px]  flex items-center gap-1 p-1 px-1.5 max-[980px]:w-[260px] max-[830px]:w-[210px] max-[680px]:w-[170px] max-[550px]:w-[130px] max-[450px]:w-[90px]">
+            <div className="absolute bottom-0 w-[300px]  flex items-center gap-1 p-1 px-1.5 max-[980px]:w-[260px] max-[830px]:w-[210px] max-[680px]:w-[170px] max-[550px]:w-[130px] max-[450px]:w-[96.7px]">
               <FaRegHeart className="text-colors-color3 text-[18px]" />
               <p className="text-[18px]">210</p>
             </div>
