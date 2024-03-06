@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { IoCreateOutline } from "react-icons/io5";
 
+import { useNavigate } from "react-router-dom";
+
 import img1 from "../imgs/Profile.jpg";
 
 function ProfileEdit() {
@@ -14,8 +16,9 @@ function ProfileEdit() {
     setText(inputValue);
     setCharCount(inputValue.length);
   };
-
  
+  const navigate = useNavigate();
+
   const isLimitReached = charCount >= maxChars;
   return (
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px] max-[1080px]:mb-[60px]">
@@ -82,7 +85,8 @@ function ProfileEdit() {
               <div className="flex gap-5 w-fit">
                 <button
                   className="bg-colors-color1 p-3 rounded-[8px] max-[800px]:bg-colors-color2 transition duration-200
-                  hover:opacity-70"
+                  hover:opacity-70" 
+                  onClick={() => navigate("/profile-edit/1")} 
                 >
                   Cancel
                 </button>

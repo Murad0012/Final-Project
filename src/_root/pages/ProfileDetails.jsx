@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import img1 from "../imgs/Profile.jpg";
 import img2 from "../imgs/post1.jpg";
@@ -9,6 +10,8 @@ import { IoCreateOutline } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 
 function ProfileDetails() {
+
+  const navigate = useNavigate();
   return (
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px] max-[1080px]:mb-[60px]">
       <div className="flex flex-col">
@@ -22,7 +25,7 @@ function ProfileDetails() {
               <h1 className="font-bold text-[30px] max-[550px]:text-[25px]">
                 Murad0012
               </h1>
-              <IoCreateOutline className="text-[30px] transition duration-200 hover:text-colors-color3" />
+              <IoCreateOutline className="text-[30px] transition duration-200 hover:text-colors-color3" onClick={() => navigate("/profile-edit/1")} />
             </div>
             <p className="text-gray-500 mb-[15px]">@murad0012</p>
             <div className="flex gap-4 mb-4">
