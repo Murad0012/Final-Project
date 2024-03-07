@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useNavigate } from "react";
 
 import img1 from "../imgs/post1.jpg";
 import img2 from "../imgs/Jlogo.jpg";
@@ -7,13 +7,16 @@ import img3 from "../imgs/Profile.jpg";
 
 import { FaHeart } from "react-icons/fa";
 import { RiFullscreenExitLine } from "react-icons/ri";
+import { HiAdjustments } from "react-icons/hi";
 import { HiOutlineSave } from "react-icons/hi";
+import { IoCreateOutline } from "react-icons/io5";
 
 function PostDetails() {
   const [isZoom, setIsZoom] = useState(false);
   const handleClick = () => {
     setIsZoom(!isZoom);
   };
+
   return (
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px] max-[1080px]:mb-[60px]">
       <div className="flex">
@@ -24,24 +27,28 @@ function PostDetails() {
                 src={img2}
                 className="w-[45px] h-[45px] object-cover rounded-[50%]"
               />
-              <div>
-                <h1 className="font-bold">Junemeniz_23</h1>
+              <div> 
+                <div className="flex items-center gap-2">
+                  <h1 className="font-bold">Junemeniz_23</h1>
+                  <HiAdjustments className="text-[20px]"/>
+                </div>
                 <p>12.02.2024</p>
               </div>
             </div>
             <img src={img1} className="max-w-[600px] h-[550px] object-cover max-[650px]:max-w-[100%] max-[650px]:h-[450px]" style={{ objectFit: isZoom ? "contain" : "cover" }}/>
-            <div className="bg-colors-color1 w-[100%] rounded-r-[10px] gap-1 flex-col flex justify-between border-l-zinc-500 border-2 border-colors-color1 max-[1080px]:hidden">
-              <div className="h-[426px] rounded-[10px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 p-4 pt-4">
+            <div className="bg-colors-color1 w-[100%] rounded-r-[10px] gap-1 flex-col flex justify-between max-[1080px]:hidden">
+              <div className="h-[426px] rounded-[10px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 p-5">
                 {/* Post Owner */}
-                <div className="flex gap-2 mb-4 ">
+                <div className="flex gap-2 mb-4 pb-3 border-b-zinc-500 border border-colors-color1 ">
                   <img
                     src={img2}
                     className="rounded-[50%] w-[40px] h-[40px] object-cover"
                   />
                   <div>
-                    <div className="flex gap-2 items-center">
+                    <div className="flex  justify-between items-center">
                       <h1>Polygonrunwa</h1>
                       <p className="text-[12px] text-gray-400">12.02.2002</p>
+                      <HiAdjustments className="text-[20px]"/>
                     </div>
                     <p className="text-[12px]">
                       Hi guys,it is my new setup.Rate pls !
@@ -73,8 +80,8 @@ function PostDetails() {
                   <HiOutlineSave className="text-[25px] w-[26px]" />
                 </div>
               </div>
-              <div className="border-t-zinc-500 border border-colors-color1 rounded-br-[10px] flex p-3 py-2 items-center gap-3">
-                <input type="text" className="bg-colors-color2 p-1 outline-none rounded-sm" />
+              <div className="border-t-zinc-500 border border-colors-color1 rounded-br-[10px] flex p-3 py-2 items-center gap-5">
+                <input type="text" className="bg-colors-color2 p-1 outline-none rounded-[8px]" />
                 <h1>Sent</h1>
               </div>
             </div>

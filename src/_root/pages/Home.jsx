@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import img3 from "../imgs/Netflix logo.jpg";
 import img4 from "../imgs/netflixPost.png";
@@ -11,6 +12,7 @@ import img9 from "../imgs/blenderpost.png";
 
 import { FaHeart } from "react-icons/fa";
 import { HiOutlineSave } from "react-icons/hi";
+import { BiCommentDetail } from "react-icons/bi";
 
 function Home() {
   const [isClicked, setIsClicked] = useState(true);
@@ -18,6 +20,9 @@ function Home() {
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
+
+  const navigate = useNavigate();
+
   return (
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px]">
       <div className="flex max-[1080px]:pt-[20px] pb-[100px]">
@@ -61,12 +66,15 @@ function Home() {
                 />
                 <div className="flex justify-between w-100% max-[550px]:px-[20px]">
                   <div className="flex items-center gap-3">
-                    <FaHeart
-                      className="text-[28px] w-[29px] transition duration-200	"
-                      style={{ color: isClicked ? "white" : "red" }}
-                      onClick={handleClick}
-                    />
-                    <p>120</p>
+                    <div className="flex items-center gap-3">
+                      <FaHeart
+                        className="text-[28px] w-[29px] transition duration-200	"
+                        style={{ color: isClicked ? "white" : "red" }}
+                        onClick={handleClick}
+                      />
+                      <p>120</p>
+                    </div>
+                    <BiCommentDetail className="text-[28px]" onClick={() => navigate("/post-details/1")}/>
                   </div>
                   <HiOutlineSave className="text-[28px]" />
                 </div>
@@ -109,13 +117,16 @@ function Home() {
                   className="w-[650px] object-cover max-[800px]:w-[480px] max-[550px]:w-[100%] rounded-none"
                 />
                 <div className="flex justify-between w-100% max-[550px]:px-[20px]">
-                  <div className="flex items-center gap-3">
-                    <FaHeart
-                      className="text-[28px] w-[29px] transition duration-200	"
-                      style={{ color: isClicked ? "white" : "red" }}
-                      onClick={handleClick}
-                    />
-                    <p>290</p>
+                <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3">
+                      <FaHeart
+                        className="text-[28px] w-[29px] transition duration-200	"
+                        style={{ color: isClicked ? "white" : "red" }}
+                        onClick={handleClick}
+                      />
+                      <p>120</p>
+                    </div>
+                    <BiCommentDetail className="text-[28px]" onClick={() => navigate("/post-details/1")}/>
                   </div>
                   <HiOutlineSave className="text-[28px]" />
                 </div>
@@ -158,12 +169,15 @@ function Home() {
                 />
                 <div className="flex justify-between w-100% max-[550px]:px-[20px]">
                   <div className="flex items-center gap-3">
-                    <FaHeart
-                      className="text-[28px] w-[29px] transition duration-200	"
-                      style={{ color: isClicked ? "white" : "red" }}
-                      onClick={handleClick}
-                    />
-                    <p>839</p>
+                    <div className="flex items-center gap-3">
+                      <FaHeart
+                        className="text-[28px] w-[29px] transition duration-200	"
+                        style={{ color: isClicked ? "white" : "red" }}
+                        onClick={handleClick}
+                      />
+                      <p>120</p>
+                    </div>
+                    <BiCommentDetail className="text-[28px]" />
                   </div>
                   <HiOutlineSave className="text-[28px]" />
                 </div>
