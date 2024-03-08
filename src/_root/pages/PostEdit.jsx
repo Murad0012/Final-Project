@@ -59,7 +59,7 @@ function PostEdit() {
                 placeholder="art,game,movie"
               ></input>
             </div>
-            <div className=" flex justify-end mb-10">
+            <div className=" flex justify-end mb-10 max-[360px]:justify-center">
               <div className="flex gap-5 w-fit">
                 <button
                   className="bg-colors-color1 p-3 rounded-[8px] max-[800px]:bg-colors-color2 transition duration-200

@@ -15,28 +15,28 @@ function ProfileDetails() {
   return (
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px] max-[1080px]:mb-[60px]">
       <div className="flex flex-col">
-        <div className="w-[910px]  flex gap-5 py-8 mb-[20px] max-[980px]:w-[790px] max-[830px]:w-[640px] max-[680px]:w-[520px] max-[550px]:w-[400px] max-[450px]:w-[300px]">
+        <div className="w-[910px]  flex gap-6 py-8 mb-[20px] max-[980px]:w-[790px] max-[830px]:w-[640px] max-[680px]:w-[520px] max-[550px]:w-[400px] max-[450px]:w-[300px]">
           <img
             src={img1}
-            className="w-[140px] h-[140px] rounded-[50%] max-[550px]:w-[100px] max-[550px]:h-[100px] max-[450px]:w-[80px] max-[450px]:h-[80px]"
+            className="w-[120px] h-[120px] rounded-[50%] max-[550px]:w-[100px] max-[550px]:h-[100px] max-[450px]:w-[80px] max-[450px]:h-[80px]"
           />
           <div className="flex flex-col pt-[10px] w-[100%]">
             <div className="flex justify-between items-center mb-[5px]">
-              <h1 className="font-bold text-[30px] max-[550px]:text-[25px]">
+              <h1 className="font-bold text-[30px] max-[550px]:text-[22px]">
                 Murad0012
               </h1>
-              <IoCreateOutline className="text-[30px] transition duration-200 hover:text-colors-color3" onClick={() => navigate("/profile-edit/1")} />
+              <IoCreateOutline className="text-[30px] transition duration-200 hover:text-colors-color3 max-[450px]:text-[25px]" onClick={() => navigate("/profile-edit/1")} />
             </div>
             <p className="text-gray-500 mb-[15px]">@murad0012</p>
             <div className="flex gap-4 mb-4">
-              <h3 className="text-[20px] max-[550px]:text-[15px] max-[450px]:text-[11px]">
+              <h3 className="text-[20px] max-[550px]:text-[15px] max-[450px]:text-[10px]">
                 <span className="text-colors-color3 font-bold">6</span> Posts
               </h3>
-              <h3 className="text-[20px] max-[550px]:text-[15px] max-[450px]:text-[11px]">
+              <h3 className="text-[20px] max-[550px]:text-[15px] max-[450px]:text-[10px]">
                 <span className="text-colors-color3 font-bold">20</span>{" "}
                 Followers
               </h3>
-              <h3 className="text-[20px] max-[550px]:text-[15px] max-[450px]:text-[11px]">
+              <h3 className="text-[20px] max-[550px]:text-[15px] max-[450px]:text-[10px]">
                 <span className="text-colors-color3 font-bold">23</span>{" "}
                 Following
               </h3>
@@ -48,7 +48,7 @@ function ProfileDetails() {
             </p>
           </div>
         </div>
-        <hr className="w-[90%] mx-auto h-[30px]" />
+        <hr className="w-[100%] mx-auto h-[30px]" />
         <div className="w-[910px] border-green-500 h-fit  flex flex-wrap gap-1 mb-[25px] max-[980px]:w-[790px] max-[830px]:w-[640px] max-[680px]:w-[520px] max-[550px]:w-[400px] max-[450px]:w-[300px]">
           <div className=" h-fit relative">
             <img

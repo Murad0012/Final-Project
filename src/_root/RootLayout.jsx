@@ -110,8 +110,14 @@ function RootLayout() {
                 Streaminny
               </h1>
             </div>
-            <div className="flex gap-2 w-fit cursor-default" onClick={() => navigate("/profile-details/1")}>
-              <img src={img2} className="w-[54px] rounded-full object-cover ml-2 max-[1590px]:ml-0" />
+            <div
+              className="flex gap-2 w-fit cursor-default"
+              onClick={() => navigate("/profile-details/1")}
+            >
+              <img
+                src={img2}
+                className="w-[54px] rounded-full object-cover ml-2 max-[1590px]:ml-0"
+              />
               <div className="flex flex-col justify-center max-[1590px]:hidden">
                 <h1 className="text-xl font-bold ">Murad0012</h1>
                 <h3 className="text-gray-500 ">@murad0012</h3>

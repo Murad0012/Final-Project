@@ -50,14 +50,14 @@ function Home() {
                     </p>
                   </div>
                 </div>
-                <div className="w-100% max-[550px]:pl-[14px]">
+                <div className="w-100% flex flex-col gap-2 max-[550px]:pl-[14px]">
                   <h1 className="text-[20px] font-bold max-[550px]:text-[14px]">
                     Thank me later
                   </h1>
-                  <div className="flex gap-2">
-                    <p className="text-[14px] text-gray-500">#movie</p>
-                    <p className="text-[14px] text-gray-500">#neflix</p>
-                    <p className="text-[14px] text-gray-500">#family</p>
+                  <div className="flex gap-3 flex-wrap">
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#netflix</p>
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#movie</p> 
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#netflixhome</p> 
                   </div>
                 </div>
                 <img
@@ -100,16 +100,15 @@ function Home() {
                     </p>
                   </div>
                 </div>
-                <div className="w-100% max-[550px]:pl-[14px]">
+                <div className="w-100% flex flex-col gap-2 max-[550px]:pl-[14px]">
                   <h1 className="text-[20px] font-bold max-[550px]:text-[14px]">
                     ⚔️ Avowed ⚔️ Coming to Xbox Series X|S, PC, and Game Pass
                     Fall 2024 |
                   </h1>
-                  <div className="flex gap-2">
-                    <p className="text-[14px] text-gray-500">
-                      #DeveloperDirect
-                    </p>
-                    <p className="text-[14px] text-gray-500">#xbox</p>
+                  <div className="flex gap-3 flex-wrap">
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#netflix</p>
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#movie</p> 
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#netflixhome</p> 
                   </div>
                 </div>
                 <img
@@ -152,15 +151,15 @@ function Home() {
                     </p>
                   </div>
                 </div>
-                <div className="w-100% max-[550px]:pl-[14px]">
+                <div className="w-100% flex flex-col gap-2 max-[550px]:pl-[14px]">
                   <h1 className="text-[20px] font-bold max-[550px]:text-[14px]">
                     The CHARGE ⚡️open movie by Blender Studio is live on
                     YouTube - Check it out!{" "}
                   </h1>
-                  <div className="flex gap-2">
-                    <p className="text-[14px] text-gray-500">#b3d</p>
-                    <p className="text-[14px] text-gray-500">#blender</p>
-                    <p className="text-[14px] text-gray-500">#animation</p>
+                  <div className="flex gap-3 flex-wrap">
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#netflix</p>
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#movie</p> 
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#netflixhome</p> 
                   </div>
                 </div>
                 <img

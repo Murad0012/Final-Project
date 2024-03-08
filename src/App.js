@@ -4,9 +4,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home, Explore, Friends, Saved, CreatePost, ProfileDetails, ProfileEdit, PostDetails, PostEdit } from "./_root/index";
 import SignInForm from "./_auth/forms/SignInForm";
 import SignUpForm from "./_auth/forms/SignUpForm";
+import Users from "./_admin/pages/Users";
+import Posts from "./_admin/pages/Posts";
 
 import RootLayout from "./_root/RootLayout";
 import AuthLayout from "./_auth/AuthLayout";
+import AdminLayout from "./_admin/AdminLayout";
 
 function App() {
   return (
@@ -31,6 +34,11 @@ function App() {
           <Route element={<AuthLayout />}>
             <Route path="/sign-in" element={<SignInForm />} />
             <Route path="/sign-up" element={<SignUpForm />} />
+          </Route>
+
+          <Route element={<AdminLayout/>}>
+            <Route path="/admin/users" element={<Users />}/>
+            <Route path="/admin/posts" element={<Posts />}/>
           </Route>
         </Routes>
       </Router>

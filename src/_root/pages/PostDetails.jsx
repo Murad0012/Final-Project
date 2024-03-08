@@ -26,7 +26,7 @@ function PostDetails() {
             <p>12.02.2023</p>
           </div>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           <p>⚔️ Avowed ⚔️ Coming to Xbox Series X|S, PC, and Game Pass Fall 2024 |</p>
           <div className="flex gap-2 flex-wrap">
             <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#Xbox</p>
@@ -35,11 +35,10 @@ function PostDetails() {
             <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#Xbox</p>
             <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#Game</p> 
             <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#DeveloperDirect</p> 
-            
           </div>
         </div>
         <img src={img1} alt="" />
-        <div className="flex gap-5">
+        <div className="flex gap-5 border-b-gray-500 border border-colors-color1 pb-4">
           <div className="flex gap-2 items-center">
             <FaHeart className="text-[30px] w-[32px]"/>
             <h3 className="font-bold text-colors-color3">120</h3>
@@ -81,7 +80,7 @@ function PostDetails() {
             <p>Bro it is nice.I wanna buy this</p>
           </div>
         </div>
-        <div className="bg-colors-color1 p-2 px-4 flex rounded-[8px]">
+        <div className="bg-colors-color1 p-2 px-4 flex rounded-[8px] ">
           <input type="text" className="outline-none bg-colors-color1 w-[100%]" placeholder="Add a comment ..." />
           <button className="p-1 px-3 rounded-[8px] bg-colors-color3">Post</button>
         </div>
