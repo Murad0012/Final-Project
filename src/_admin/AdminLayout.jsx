@@ -50,18 +50,6 @@ function AdminLayout() {
                 onClick={() => navigate("/admin/users")}
               />
             </li>
-            <li
-              className="p-[9px] rounded-[8px] hover:bg-[#211e21]"
-              style={{
-                backgroundColor: res == "/admin/posts" ? "#8685ff" : "",
-              }}
-            >
-              <AiOutlinePicture
-                className="text-[32px] text-colors-color3 max-[550px]:text-[20px]"
-                style={{ color: res == "/admin/posts" ? "white" : "#8685ff" }}
-                onClick={() => navigate("/admin/posts")}
-              />
-            </li>
           </ul>
         </div>
       </div>
@@ -105,19 +93,6 @@ function AdminLayout() {
                   }}
                 />
                 <h1 className="text-xl max-[1590px]:hidden">Users</h1>
-              </li>
-              <li
-                className="flex rounded-[8px] p-4 gap-4 hover:bg-[#211e21] "
-                onClick={() => navigate("/admin/posts")}
-                style={{
-                  backgroundColor: res == "/admin/posts" ? "#8685ff" : "",
-                }}
-              >
-                <AiOutlinePicture
-                  className="text-[32px]"
-                  style={{ color: res == "/admin/posts" ? "" : "#8685ff" }}
-                />
-                <h1 className="text-xl max-[1590px]:hidden">Posts</h1>
               </li>
             </ul>
           </div>

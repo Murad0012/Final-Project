@@ -5,7 +5,6 @@ import { Home, Explore, Friends, Saved, CreatePost, ProfileDetails, ProfileEdit,
 import SignInForm from "./_auth/forms/SignInForm";
 import SignUpForm from "./_auth/forms/SignUpForm";
 import Users from "./_admin/pages/Users";
-import Posts from "./_admin/pages/Posts";
 
 import RootLayout from "./_root/RootLayout";
 import AuthLayout from "./_auth/AuthLayout";
@@ -38,7 +37,6 @@ function App() {
 
           <Route element={<AdminLayout/>}>
             <Route path="/admin/users" element={<Users />}/>
-            <Route path="/admin/posts" element={<Posts />}/>
           </Route>
         </Routes>
       </Router>
