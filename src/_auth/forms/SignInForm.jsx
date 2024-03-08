@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import img1 from "../imgs/Logo.png";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SignInForm() {
   const [checktype, setChecktype] = useState(true);
@@ -9,6 +10,9 @@ function SignInForm() {
   const handleClick = () => {
     setChecktype(!checktype);
   };
+
+  const navigate = useNavigate();
+
   return (
     <div className="bg-colors-color1 px-10 py-14 rounded-3xl">
       <div className="flex items-center justify-center gap-2">
@@ -54,7 +58,7 @@ function SignInForm() {
         <div className="mt-10">
           <button
             className="bg-violet-500 text-xl text-white font-bold rounded-xl py-3 w-full transition duration-200
-          hover:opacity-70"
+          hover:opacity-70" onClick={() => navigate("/home")}
           >
             Sign In
           </button>

@@ -42,7 +42,7 @@ function PostEdit() {
               </p>
             </div>
             <div className="flex flex-col gap-2 ">
-              <h3 className="font-bold">Photo (You can't change the photo)</h3>
+              <h3 className="font-bold">Photo (You can't change the photo !)</h3>
               <div className="h-[550px] w-[100%] rounded-[10px] bg-colors-color1 flex justify-center items-center max-[800px]:bg-colors-color2">
                 <img
                   src={img1}
@@ -67,11 +67,14 @@ function PostEdit() {
                 >
                   Cancel
                 </button>
+                <button className="font-bold bg-red-500 p-3 rounded-[8px]
+              transition duration-200
+              hover:opacity-60">Delete</button>
                 <button
                   className="bg-colors-color3 p-3 rounded-[8px] transition duration-200
-                  hover:opacity-70"
+                  hover:opacity-60"
                 >
-                  Update Post
+                  Update
                 </button>
               </div>
             </div>

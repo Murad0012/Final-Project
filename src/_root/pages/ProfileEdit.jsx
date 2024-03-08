@@ -56,11 +56,11 @@ function ProfileEdit() {
 
             <div className="flex flex-col gap-2">
               <label htmlFor="" className="font-bold">
-                Email
+                Email (You can't change !)
               </label>
               <input
                 className="bg-colors-color1 w-[400px] rounded-[10px] resize-none p-[20px] outline-none max-[800px]:bg-colors-color2 max-[550px]:w-[300px] max-[550px]:text-[12px]"
-                placeholder="murad.mammedzade11@gmail.com"
+                placeholder="murad.mammedzade11@gmail.com" disabled
               ></input>
             </div>
 

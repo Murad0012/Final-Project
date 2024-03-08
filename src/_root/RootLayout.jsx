@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import img1 from "../_root/imgs/Logo.png";
+import img1 from "../_root/imgs/Streaminny Logo.png";
 import img2 from "../_root/imgs/Profile.jpg";
 
 import { BsFillHouseFill } from "react-icons/bs";
@@ -110,8 +110,8 @@ function RootLayout() {
                 Streaminny
               </h1>
             </div>
-            <div className="flex gap-2 w-fit ">
-              <img src={img2} className="w-[54px] rounded-full object-cover " />
+            <div className="flex gap-2 w-fit cursor-default" onClick={() => navigate("/profile-details/1")}>
+              <img src={img2} className="w-[54px] rounded-full object-cover ml-2 max-[1590px]:ml-0" />
               <div className="flex flex-col justify-center max-[1590px]:hidden">
                 <h1 className="text-xl font-bold ">Murad0012</h1>
                 <h3 className="text-gray-500 ">@murad0012</h3>

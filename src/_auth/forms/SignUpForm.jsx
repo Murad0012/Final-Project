@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import img1 from "../imgs/Logo.png";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SignUpForm() {
   const [checktype, setChecktype] = useState(true);
@@ -9,6 +10,8 @@ function SignUpForm() {
   const handleClick = () => {
     setChecktype(!checktype);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className="bg-colors-color1 px-10 py-14 rounded-3xl">
@@ -25,7 +28,7 @@ function SignUpForm() {
         <div className="mb-4 flex gap-6 max-sm:justify-between">
           <div className="w-44 max-sm:w-32">
             <label className="text-lg font-medium" htmlFor="username">
-              Firstname
+              Name
             </label>
             <input
               placeholder="Enter name"
@@ -35,10 +38,10 @@ function SignUpForm() {
           </div>
           <div className="w-44 max-sm:w-33">
             <label className="text-lg font-medium" htmlFor="username">
-              Lastname
+              Username
             </label>
             <input
-              placeholder="Enter surname"
+              placeholder="Enter username"
               className="w-full border-2 border-gray-100 rounded-xl p-4 bg-transparent mt-1.5 outline-none active:border-colors-color3 max-sm:p-3 placeholder:text-sm"
               id="username"
             />
@@ -46,10 +49,10 @@ function SignUpForm() {
         </div>
         <div className="mb-4">
           <label className="text-lg font-medium" htmlFor="username">
-            Username
+            Email
           </label>
           <input
-            placeholder="Enter username"
+            placeholder="Enter email"
             className="w-full border-2 border-gray-100 rounded-xl p-4 bg-transparent mt-1.5 outline-none active:border-colors-color3"
             id="username"
           />
@@ -77,7 +80,7 @@ function SignUpForm() {
         <div className="mt-6">
           <button
             className="bg-violet-500 text-xl text-white font-bold rounded-xl py-3 w-full transition duration-200
-          hover:opacity-70"
+          hover:opacity-70"  onClick={() => navigate("/sign-in")}
           >
             Sign Up
           </button>
