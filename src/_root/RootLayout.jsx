@@ -32,6 +32,7 @@ function RootLayout() {
               <img
                 src={img2}
                 className="w-[45px] rounded-[50%] object-cover max-[550px]:w-[40px]"
+                onClick={() => navigate("/profile-details/1")}
               />
               <IoMdExit className="text-[32px] text-colors-color3 max-[550px]:text-[28px]" />
             </div>

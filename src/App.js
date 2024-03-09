@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { Home, Explore, Friends, Saved, CreatePost, ProfileDetails, ProfileEdit, PostDetails, PostEdit } from "./_root/index";
+import { Home, Explore, Friends, Saved, CreatePost, ProfileDetails, ProfileEdit, PostDetails, PostEdit, NotFound } from "./_root/index";
 import SignInForm from "./_auth/forms/SignInForm";
 import SignUpForm from "./_auth/forms/SignUpForm";
 import Users from "./_admin/pages/Users";
@@ -38,6 +38,8 @@ function App() {
           <Route element={<AdminLayout/>}>
             <Route path="/admin/users" element={<Users />}/>
           </Route>
+
+          <Route path="*" element={<NotFound />}/>
         </Routes>
       </Router>
     </main>

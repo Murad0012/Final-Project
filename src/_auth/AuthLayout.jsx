@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 function AuthLayout() {
   return (
     <div className="flex w-full h-screen max-sm:bg-colors-color1">
-      <div className="w-full h-screen flex items-center justify-center xl:w-1/2">
+      <div className="w-full flex items-center justify-center xl:w-1/2">
         <Outlet />
       </div>
       <div className="hidden relative xl:flex h-full w-1/2 items-center justify-center bg-colors-color1">

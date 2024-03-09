@@ -6,7 +6,6 @@ import img1 from "../_root/imgs/Streaminny Logo.png";
 import img2 from "../_root/imgs/Profile.jpg";
 
 import { FaUsersCog } from "react-icons/fa";
-import { AiOutlinePicture } from "react-icons/ai";
 import { IoMdExit } from "react-icons/io";
 
 function AdminLayout() {

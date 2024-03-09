@@ -14,16 +14,18 @@ function SignInForm() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-colors-color1 px-10 py-14 rounded-3xl">
-      <div className="flex items-center justify-center gap-2">
-        <img src={img1} className="h-16 object-cover max-sm:h-12" />
-        <h1 className="text-5xl font-semibold text-colors-color3 max-sm:text-4xl">
+    <div className="bg-colors-color1 px-10 py-14 rounded-3xl max-[480px]:w-[320px] max-[480px]:p-0 max-[380px]:w-[300px]">
+      <div className="flex items-center justify-center gap-1">  
+        <img src={img1} className="h-16 object-cover max-[380px]:h-14" />
+        <h1 className="text-5xl font-semibold text-colors-color3 max-[380px]:text-4xl">
           Streaminny
         </h1>
       </div>
-      <p className="font-medium text-xl text-grat-500 mt-4 max-sm:text-base text-center">
-        Welcome back! Please enter your details.
-      </p>
+      <div className="flex justify-center">
+        <p className="font-medium text-xl text-grat-500 mt-4 w-fit max-[490px]:text-[14px]">
+          Welcome back! Please enter your details.
+        </p>
+      </div>
       <div className="mt-8">
         <div className="mb-4">
           <label className="text-lg font-medium" htmlFor="username">
