@@ -1,21 +1,46 @@
 import React from "react";
 import { useState } from "react";
 import img1 from "../imgs/Logo.png";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { useFormik } from "formik";
+import { Login } from "../../services/authServices";
+import { useDispatch } from "react-redux";
+import { logInAction } from "../../redux/accountSlice";
 
 function SignInForm() {
+  const navigate = useNavigate();
+
+  // Show Password //
   const [checktype, setChecktype] = useState(true);
 
   const handleClick = () => {
     setChecktype(!checktype);
   };
 
-  const navigate = useNavigate();
+  // Login //
+  const dispatch = useDispatch();
+  const [error, setError] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+      userName: "",
+      password: "",
+    },
+    onSubmit: (values) => {
+      Login(values)
+        .then((res) => {
+          dispatch(logInAction(res.data));
+          navigate("/home");
+        })
+        .catch((e) => {
+          setError(true);
+        });
+    },
+  });
 
   return (
     <div className="bg-colors-color1 px-10 py-14 rounded-3xl max-[480px]:w-[320px] max-[480px]:p-0 max-[380px]:w-[300px]">
-      <div className="flex items-center justify-center gap-1">  
+      <div className="flex items-center justify-center gap-1">
         <img src={img1} className="h-16 object-cover max-[380px]:h-14" />
         <h1 className="text-5xl font-semibold text-colors-color3 max-[380px]:text-4xl">
           Streaminny
@@ -35,6 +60,9 @@ function SignInForm() {
             placeholder="Enter username"
             className="w-full border-2 border-gray-100 rounded-xl p-4 bg-transparent mt-1.5 outline-none active:border-colors-color3"
             id="username"
+            name="userName"
+            value={formik.values.userName}
+            onChange={formik.handleChange}
           />
         </div>
         <div>
@@ -46,6 +74,9 @@ function SignInForm() {
             className="w-full border-2 border-gray-100 rounded-xl p-4 bg-transparent mt-1.5 outline-none active:border-colors-color3"
             id="password"
             type={checktype ? "password" : "text"}
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
           />
         </div>
         <div className="mt-4 flex gap-1">
@@ -60,12 +91,20 @@ function SignInForm() {
         <div className="mt-10">
           <button
             className="bg-violet-500 text-xl text-white font-bold rounded-xl py-3 w-full transition duration-200
-          hover:opacity-70" onClick={() => navigate("/home")}
+          hover:opacity-70"
+            onClick={formik.handleSubmit}
           >
             Sign In
           </button>
         </div>
-        <div className="mt-10 flex justify-center gap-x-1">
+        {error && (
+          <div className="flex justify-center pt-2">
+            <p className="text-red-500 max-[380px] text-[14px]">
+              Username or password is incorrect!
+            </p>
+          </div>
+        )}
+        <div className="mt-8 flex justify-center gap-x-1">
           <p>Don't have an account?</p>
           <Link
             to="/sign-up"

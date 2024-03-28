@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import img1 from "../_root/imgs/Streaminny Logo.png";
 import img2 from "../_root/imgs/Profile.jpg";
@@ -10,6 +11,8 @@ import { MdExplore, MdAddPhotoAlternate } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
 import { HiOutlineSave } from "react-icons/hi";
 import { IoMdExit } from "react-icons/io";
+import { useSelector } from "react-redux";
+import { logOutAction } from "../redux/accountSlice";
 
 function RootLayout() {
   const path = useLocation();
@@ -17,6 +20,9 @@ function RootLayout() {
 
   const navigate = useNavigate();
 
+  const { userName} = useSelector((x) => x.account);
+
+  const dispatch = useDispatch();
   return (
     <div className="flex flex-col max-[800px]:bg-colors-color1">
       <div className="w-screen fixed hidden max-[1080px]:block z-50">
@@ -120,8 +126,8 @@ function RootLayout() {
                 className="w-[54px] rounded-full object-cover ml-2 max-[1590px]:ml-0"
               />
               <div className="flex flex-col justify-center max-[1590px]:hidden">
-                <h1 className="text-xl font-bold ">Murad0012</h1>
-                <h3 className="text-gray-500 ">@murad0012</h3>
+                <h1 className="text-xl font-bold ">{userName}</h1>
+                <h3 className="text-gray-500 ">@{userName?.toLowerCase()}</h3>
               </div>
             </div>
             <ul className="flex flex-col gap-[20px] w-[260px] max-[1590px]:w-[65px] ">
@@ -189,7 +195,7 @@ function RootLayout() {
               </li>
             </ul>
           </div>
-          <div className="flex rounded-[8px] gap-4 p-4 hover:bg-[#211e21]">
+          <div className="flex rounded-[8px] gap-4 p-4 hover:bg-[#211e21]" onClick={() => dispatch(logOutAction())}>
             <IoMdExit className="text-[32px] text-colors-color3" />
             <h1 className="text-xl max-[1590px]:hidden">Logout</h1>
           </div>

@@ -3,6 +3,8 @@ import { useState } from "react";
 import img1 from "../imgs/Logo.png";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import { Register } from '../../services/authServices'
 
 function SignUpForm() {
   const [checktype, setChecktype] = useState(true);
@@ -12,6 +14,21 @@ function SignUpForm() {
   };
 
   const navigate = useNavigate();
+
+  // Register //
+  const formik = useFormik({
+    initialValues:{
+      name:"",
+      userName:"",
+      password:"",
+      email:""
+    },
+    onSubmit:(values) => {
+      Register(values).then(() => {
+        navigate("/sign-in")
+      }).catch(e => console.log(e));
+    }
+  })
 
   return (
     <div className="bg-colors-color1 px-10 py-14 rounded-3xl max-[480px]:w-[320px] max-[480px]:p-0 max-[380px]:w-[300px]">
@@ -36,6 +53,9 @@ function SignUpForm() {
               placeholder="Enter name"
               className="text-[12px] w-full border-2 border-gray-100 rounded-xl p-4 bg-transparent mt-1.5 outline-none active:border-colors-color3"
               id="name"
+              name="name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
             />
           </div>
           <div className="flex flex-col w-[45%]">
@@ -46,6 +66,9 @@ function SignUpForm() {
               placeholder="Enter username"
               className="text-[12px] w-full border-2 border-gray-100 rounded-xl p-4 bg-transparent mt-1.5 outline-none active:border-colors-color3"
               id="username"
+              name="userName"
+              value={formik.values.userName}
+              onChange={formik.handleChange}
             />
           </div>
         </div>
@@ -57,6 +80,9 @@ function SignUpForm() {
             placeholder="Enter email"
             className="text-[12px] w-full border-2 border-gray-100 rounded-xl p-4 bg-transparent mt-1.5 outline-none active:border-colors-color3"
             id="email"
+            name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
           />
         </div>
         <div>
@@ -68,6 +94,9 @@ function SignUpForm() {
             className="text-[12px] w-full border-2 border-gray-100 rounded-xl p-4 bg-transparent mt-1.5 outline-none active:border-colors-color3"
             id="password"
             type={checktype ? "password" : "text"}
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
           />
         </div>
         <div className="mt-4 flex gap-1">
@@ -82,13 +111,16 @@ function SignUpForm() {
         <div className="mt-7">
           <button
             className="bg-violet-500 text-xl text-white font-bold rounded-xl py-3 w-full transition duration-200
-          hover:opacity-70" onClick={() => navigate("/sign-in")}
+          hover:opacity-70"
+            onClick={formik.handleSubmit}
           >
             Sign Up
           </button>
         </div>
         <div className="mt-10 flex justify-center gap-x-1">
-          <p className="max-[380px]:text-[14px]">You already have an account?</p>
+          <p className="max-[380px]:text-[14px]">
+            You already have an account?
+          </p>
           <Link
             to="/sign-in"
             className="text-blue-500 transition duration-200 hover:text-white max-[380px]:text-[14px]"

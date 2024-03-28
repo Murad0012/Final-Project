@@ -1,7 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { Home, Explore, Friends, Saved, CreatePost, ProfileDetails, ProfileEdit, PostDetails, PostEdit, NotFound } from "./_root/index";
+import {
+  Home,
+  Explore,
+  Friends,
+  Saved,
+  CreatePost,
+  ProfileDetails,
+  ProfileEdit,
+  PostDetails,
+  PostEdit,
+  NotFound,
+} from "./_root/index";
 import SignInForm from "./_auth/forms/SignInForm";
 import SignUpForm from "./_auth/forms/SignUpForm";
 import Users from "./_admin/pages/Users";
@@ -10,6 +21,8 @@ import RootLayout from "./_root/RootLayout";
 import AuthLayout from "./_auth/AuthLayout";
 import AdminLayout from "./_admin/AdminLayout";
 
+import ProtectedRouted from "./utils/ProtectedRoute";
+
 function App() {
   return (
     <main>
@@ -17,8 +30,22 @@ function App() {
         <Routes>
           {/* Root Layout */}
           <Route element={<RootLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
+            <Route
+              path="/"
+              element={
+                <ProtectedRouted>
+                  <Home />
+                </ProtectedRouted>
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <ProtectedRouted>
+                  <Home />
+                </ProtectedRouted>
+              }
+            />
             <Route path="/explore" element={<Explore />} />
             <Route path="/friends" element={<Friends />} />
             <Route path="/saved" element={<Saved />} />
@@ -35,11 +62,11 @@ function App() {
             <Route path="/sign-up" element={<SignUpForm />} />
           </Route>
 
-          <Route element={<AdminLayout/>}>
-            <Route path="/admin/users" element={<Users />}/>
+          <Route element={<AdminLayout />}>
+            <Route path="/admin/users" element={<Users />} />
           </Route>
 
-          <Route path="*" element={<NotFound />}/>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </main>
