@@ -5,5 +5,8 @@ export const getUserDetailes = (id) =>{
 };
 
 export const UpdateUserDetailes = (userDetails) => {
-    return httpClient.put(`Account/UpdateUser`, userDetails);
+    return httpClient.put(`Account/UpdateUser`, userDetails,{headers:{
+        Accept: "multipart/form-data",
+        "Content-Type": "multipart/form-data",
+    }});
 };

@@ -56,9 +56,9 @@ function ProfileEdit() {
       name: "",
       userId: param.id,
       description: "",
+      profileImg: null,
     },
     onSubmit: (values) => {
-      console.log(values);
       if (values.userName == "") {
         values.userName = userDetails?.userName;
       }
@@ -68,13 +68,21 @@ function ProfileEdit() {
       if (values.description == "") {
         values.description = userDetails?.description;
       }
-      UpdateUserDetailes(values)
+      const formData = new FormData();
+      formData.append("userName", values.userName);
+      formData.append("name", values.name);
+      formData.append("userId", values.userId);
+      formData.append("description", values.description);
+      formData.append("profileImg", values.img);
+
+      UpdateUserDetailes(formData)
         .then((res) => {
           dispatch(updateUser(values.userName));
           navigate(`/profile-details/${param.id}`);
         })
         .catch((e) => {
           setError(true);
+          console.log(e);
         });
     },
   });
@@ -89,11 +97,11 @@ function ProfileEdit() {
           </div>
           <div className="flex flex-col gap-8">
             <div className="flex items-center gap-2">
-              <img
-                src={img1}
-                className="w-[70px] h-[70px] object-contain rounded-[50%]"
+              <input
+                type="file"
+                onChange={(e) => formik.setFieldValue("img", e.target.files[0])}
+                name="profileImg"
               />
-              <h1 className="text-colors-color3">Change Profile Picture</h1>
             </div>
 
             <div className="flex flex-col gap-2">
