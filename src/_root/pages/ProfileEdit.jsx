@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoCreateOutline } from "react-icons/io5";
 
-import { useNavigate } from "react-router-dom";
+import { getUserDetailes } from "../../services/userInfoServices";
+import { useNavigate, useParams } from "react-router-dom";
+import { useFormik } from "formik";
+import { UpdateUserDetailes } from "../../services/userInfoServices";
+import { updateUser } from "../../redux/accountSlice";
+import { useDispatch } from "react-redux";
 
 import img1 from "../imgs/Profile.jpg";
 
@@ -16,10 +21,64 @@ function ProfileEdit() {
     setText(inputValue);
     setCharCount(inputValue.length);
   };
- 
+
   const navigate = useNavigate();
 
   const isLimitReached = charCount >= maxChars;
+
+  // User Get Info //
+  const [userDetails, setUserDetails] = useState(null);
+  const param = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getUserDetailes(param.id);
+        setUserDetails(result.data);
+        setText(result.data?.description || "");
+        setCharCount(
+          result.data?.description ? result.data.description.length : 0
+        );
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+    fetchData();
+  }, [param.id]);
+
+  // User Put Info //
+  const [error, setError] = useState(false);
+  const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      userName: "",
+      name: "",
+      userId: param.id,
+      description: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+      if (values.userName == "") {
+        values.userName = userDetails?.userName;
+      }
+      if (values.name == "") {
+        values.name = userDetails?.name;
+      }
+      if (values.description == "") {
+        values.description = userDetails?.description;
+      }
+      UpdateUserDetailes(values)
+        .then((res) => {
+          dispatch(updateUser(values.userName));
+          navigate(`/profile-details/${param.id}`);
+        })
+        .catch((e) => {
+          setError(true);
+        });
+    },
+  });
+
   return (
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px] max-[1080px]:mb-[60px]">
       <div className="flex">
@@ -30,7 +89,10 @@ function ProfileEdit() {
           </div>
           <div className="flex flex-col gap-8">
             <div className="flex items-center gap-2">
-              <img src={img1} className="w-[70px] h-[70px] object-contain rounded-[50%]"/>
+              <img
+                src={img1}
+                className="w-[70px] h-[70px] object-contain rounded-[50%]"
+              />
               <h1 className="text-colors-color3">Change Profile Picture</h1>
             </div>
 
@@ -41,6 +103,9 @@ function ProfileEdit() {
               <input
                 className="bg-colors-color1 w-[300px] rounded-[10px] resize-none p-[20px] outline-none max-[800px]:bg-colors-color2 max-[550px]:w-[200px] max-[550px]:text-[14px]"
                 placeholder="Murad"
+                defaultValue={userDetails?.name}
+                name="name"
+                onChange={formik.handleChange}
               ></input>
             </div>
 
@@ -51,6 +116,9 @@ function ProfileEdit() {
               <input
                 className="bg-colors-color1 w-[300px] rounded-[10px] resize-none p-[20px] outline-none max-[800px]:bg-colors-color2 max-[550px]:w-[200px] max-[550px]:text-[14px]"
                 placeholder="Murad0012"
+                defaultValue={userDetails?.userName}
+                name="userName"
+                onChange={formik.handleChange}
               ></input>
             </div>
 
@@ -60,21 +128,28 @@ function ProfileEdit() {
               </label>
               <input
                 className="bg-colors-color1 w-[400px] rounded-[10px] resize-none p-[20px] outline-none max-[800px]:bg-colors-color2 max-[550px]:w-[300px] max-[550px]:text-[12px]"
-                placeholder="murad.mammedzade11@gmail.com" disabled
+                placeholder="murad.mammedzade11@gmail.com"
+                disabled
+                defaultValue={userDetails?.email}
               ></input>
             </div>
 
             <div className="flex flex-col gap-2">
               <h3 className="font-bold">Description</h3>
               <textarea
-                value={text}
-                onChange={handleChange}
+                values={text}
                 placeholder="Type description..."
                 rows={4}
                 maxLength={maxChars}
                 className={`resize-none w-full h-[220px] border rounded-[10px] p-[10px] outline-none outline-nonetransition duration-150  bg-colors-color1 max-[800px]:bg-colors-color2 max-[550px]:text-[14px] ${
                   isLimitReached ? "border-red-500" : "border-colors-color2"
                 }`}
+                defaultValue={userDetails?.description}
+                onChange={(event) => {
+                  handleChange(event);
+                  formik.handleChange(event);
+                }}
+                name="description"
               ></textarea>
               <p>
                 Characters remaining: {charCount}/{maxChars}
@@ -85,14 +160,15 @@ function ProfileEdit() {
               <div className="flex gap-5 w-fit">
                 <button
                   className="bg-colors-color1 p-3 rounded-[8px] max-[800px]:bg-colors-color2 transition duration-200
-                  hover:opacity-70" 
-                  onClick={() => navigate("/profile-edit/1")} 
+                  hover:opacity-70"
+                  onClick={() => navigate(-1)}
                 >
                   Cancel
                 </button>
                 <button
                   className="bg-colors-color3 p-3 rounded-[8px] transition duration-200
                   hover:opacity-70"
+                  onClick={formik.handleSubmit}
                 >
                   Update
                 </button>

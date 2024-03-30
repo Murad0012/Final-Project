@@ -18,9 +18,12 @@ export const accountSlice = createSlice({
             state.isLoggedIn = false
             state.token = null
             state.userName = null
+        },
+        updateUser:(state, action) => {
+            state.userName = action.payload
         }
     },
 })
 
-export const { logInAction, logOutAction } = accountSlice.actions
+export const { logInAction, logOutAction, updateUser } = accountSlice.actions
 export default accountSlice.reducer

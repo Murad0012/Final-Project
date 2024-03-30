@@ -50,7 +50,14 @@ function App() {
             <Route path="/friends" element={<Friends />} />
             <Route path="/saved" element={<Saved />} />
             <Route path="/create-post" element={<CreatePost />} />
-            <Route path="/profile-details/:id" element={<ProfileDetails />} />
+            <Route
+              path="/profile-details/:id"
+              element={
+                <ProtectedRouted>
+                  <ProfileDetails />
+                </ProtectedRouted>
+              }
+            />
             <Route path="/profile-edit/:id" element={<ProfileEdit />} />
             <Route path="/post-details/:id" element={<PostDetails />} />
             <Route path="/post-edit/:id" element={<PostEdit />} />

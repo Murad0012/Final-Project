@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -13,16 +13,18 @@ import { HiOutlineSave } from "react-icons/hi";
 import { IoMdExit } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { logOutAction } from "../redux/accountSlice";
+import { jwtDecode } from "jwt-decode";
 
 function RootLayout() {
   const path = useLocation();
   const res = path.pathname.toLowerCase();
-
   const navigate = useNavigate();
 
-  const { userName} = useSelector((x) => x.account);
+  const { userName, token } = useSelector((state) => state.account);
 
-  const dispatch = useDispatch();
+  const user = token != null ? jwtDecode(token) : null;
+
+  const dispatch = useDispatch()
   return (
     <div className="flex flex-col max-[800px]:bg-colors-color1">
       <div className="w-screen fixed hidden max-[1080px]:block z-50">
@@ -119,7 +121,7 @@ function RootLayout() {
             </div>
             <div
               className="flex gap-2 w-fit cursor-default"
-              onClick={() => navigate("/profile-details/1")}
+              onClick={() => navigate(`/profile-details/${user?.UserID}`)}
             >
               <img
                 src={img2}
@@ -195,7 +197,10 @@ function RootLayout() {
               </li>
             </ul>
           </div>
-          <div className="flex rounded-[8px] gap-4 p-4 hover:bg-[#211e21]" onClick={() => dispatch(logOutAction())}>
+          <div
+            className="flex rounded-[8px] gap-4 p-4 hover:bg-[#211e21]"
+            onClick={() => dispatch(logOutAction())}
+          >
             <IoMdExit className="text-[32px] text-colors-color3" />
             <h1 className="text-xl max-[1590px]:hidden">Logout</h1>
           </div>
