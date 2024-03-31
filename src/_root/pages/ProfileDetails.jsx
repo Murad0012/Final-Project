@@ -4,7 +4,7 @@ import { getUserDetailes } from "../../services/userInfoServices";
 import { useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 
-import img1 from "../imgs/Jlogo.jpg";
+import img1 from "../imgs/Default Profile.jpg";
 import img2 from "../imgs/post1.jpg";
 import img3 from "../imgs/post2.webp";
 import img4 from "../imgs/post3.jpg";
@@ -32,8 +32,8 @@ function ProfileDetails() {
     fetchData();
   }, [param.id]);
 
-  console.log(userDetails);
-
+  let imagesrc = userDetails?.profileImg ? "https://localhost:7018/Imgs/" + userDetails.profileImg : img1;
+  
   // User owner check //
   const { token } = useSelector((state) => state.account);
 
@@ -46,7 +46,7 @@ function ProfileDetails() {
       <div className="flex flex-col">
         <div className="w-[910px]  flex gap-6 py-8 mb-[20px] max-[980px]:w-[790px] max-[830px]:w-[640px] max-[680px]:w-[520px] max-[550px]:w-[400px] max-[450px]:w-[300px]">
           <img
-            src={img1}
+            src={imagesrc}
             className="w-[120px] h-[120px] rounded-[50%] max-[550px]:w-[100px] max-[550px]:h-[100px] max-[450px]:w-[80px] max-[450px]:h-[80px]"
           />
           <div className="flex flex-col pt-[10px] w-[100%]">

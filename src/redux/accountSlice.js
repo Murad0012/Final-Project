@@ -5,7 +5,7 @@ export const accountSlice = createSlice({
     initialState:{
         token:null,
         userName:null,
-        isLoggedIn:false
+        isLoggedIn:false,
     },
     reducers:{
         logInAction: (state, action) => {

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { IoCreateOutline } from "react-icons/io5";
-
 import { getUserDetailes } from "../../services/userInfoServices";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import { UpdateUserDetailes } from "../../services/userInfoServices";
 import { updateUser } from "../../redux/accountSlice";
 import { useDispatch } from "react-redux";
-
 import img1 from "../imgs/Profile.jpg";
 
 function ProfileEdit() {
@@ -68,12 +66,16 @@ function ProfileEdit() {
       if (values.description == "") {
         values.description = userDetails?.description;
       }
+      if (values.profileImg === null) {
+        values.profileImg = userDetails?.profileImg;
+      }
+
       const formData = new FormData();
       formData.append("userName", values.userName);
       formData.append("name", values.name);
       formData.append("userId", values.userId);
       formData.append("description", values.description);
-      formData.append("profileImg", values.img);
+      formData.append("profileImg", values.profileImg);
 
       UpdateUserDetailes(formData)
         .then((res) => {
@@ -99,8 +101,11 @@ function ProfileEdit() {
             <div className="flex items-center gap-2">
               <input
                 type="file"
-                onChange={(e) => formik.setFieldValue("img", e.target.files[0])}
+                onChange={(e) =>
+                  formik.setFieldValue("profileImg", e.target.files[0])
+                }
                 name="profileImg"
+                accept="image/*"
               />
             </div>
 
