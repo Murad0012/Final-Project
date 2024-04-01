@@ -81,6 +81,7 @@ function ProfileEdit() {
         .then((res) => {
           dispatch(updateUser(values.userName));
           navigate(`/profile-details/${param.id}`);
+          window.location.reload();
         })
         .catch((e) => {
           setError(true);
