@@ -1,5 +1,10 @@
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { Create } from '../../services/postServices'
+import { useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
+import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
 
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 
@@ -17,17 +22,34 @@ function CreatePost() {
 
   const isLimitReached = charCount >= maxChars;
 
-  // Image upload //
-  const [file, setFile] = useState();
-  const [fileUrl, setFileUrl] = useState("");
+  // Create Post // 
+  const navigate = useNavigate();
+
+  const { userName, token } = useSelector((state) => state.account);
+
+  const user = token != null ? jwtDecode(token) : null;
+
+  const formik = useFormik({
+    initialValues:{
+      caption:"",
+      img: null,
+      tags:"",
+      userId: user?.UserID
+    },
+    onSubmit:(values) => {
+      console.log(values)
+      Create(values).then(()=>{
+        navigate("/home")
+      }).catch(e => console.log(e));
+    }
+  })
 
   const onDrop = useCallback(
     (acceptedFiles) => {
-      setFile(acceptedFiles);
-      setFileUrl(URL.createObjectURL(acceptedFiles[0]));
-      console.log(fileUrl);
+      const imgFile = acceptedFiles[0];
+      formik.setFieldValue("img", imgFile);
     },
-    [file]
+    [formik]
   );
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -49,8 +71,12 @@ function CreatePost() {
             <div className="flex flex-col gap-2 ">
               <h3 className="font-bold">Caption</h3>
               <textarea
+                onChange={(event) => {
+                  handleChange(event);
+                  formik.handleChange(event);
+                }}
+                name="caption"
                 value={text}
-                onChange={handleChange}
                 placeholder="Type caption..."
                 rows={4}
                 maxLength={maxChars}
@@ -69,9 +95,9 @@ function CreatePost() {
                 className="h-[550px] w-[100%] rounded-[10px] bg-colors-color1 flex justify-center items-center max-[800px]:bg-colors-color2"
               >
                 <input {...getInputProps()} />
-                {fileUrl ? (
+                {formik.values.img ? (
                   <img
-                    src={fileUrl}
+                    src={URL.createObjectURL(formik.values.img)}
                     className="max-w-[90%] max-h-[90%] object-contain"
                   />
                 ) : (
@@ -90,6 +116,8 @@ function CreatePost() {
                 Add Tags (separated by comma " , " and do not use " # ")
               </h3>
               <input
+                name="tags"
+                onChange={formik.handleChange}
                 className="bg-colors-color1 rounded-[10px] resize-none p-[20px] outline-none max-[800px]:bg-colors-color2"
                 placeholder="art,game,movie"
               ></input>
@@ -105,6 +133,7 @@ function CreatePost() {
                 <button
                   className="bg-colors-color3 p-3 rounded-[8px] transition duration-200
                   hover:opacity-70"
+                  onClick={formik.handleSubmit}
                 >
                   Create Post
                 </button>

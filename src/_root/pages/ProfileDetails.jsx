@@ -24,7 +24,7 @@ function ProfileDetails() {
     const fetchData = async () => {
       try {
         const result = await getUserDetailes(param.id);
-        setUserDetails(result.data);
+        setUserDetails(result.data);  
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
