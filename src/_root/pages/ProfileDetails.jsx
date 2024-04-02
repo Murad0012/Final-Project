@@ -24,7 +24,8 @@ function ProfileDetails() {
     const fetchData = async () => {
       try {
         const result = await getUserDetailes(param.id);
-        setUserDetails(result.data);  
+        console.log(result.data);
+        setUserDetails(result.data);
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
@@ -32,8 +33,10 @@ function ProfileDetails() {
     fetchData();
   }, [param.id]);
 
-  let imagesrc = userDetails?.profileImg ? "https://localhost:7018/Imgs/" + userDetails.profileImg : img1;
-  
+  let imagesrc = userDetails?.profileImg
+    ? "https://localhost:7018/Imgs/" + userDetails.profileImg
+    : img1;
+
   // User owner check //
   const { token } = useSelector((state) => state.account);
 
@@ -84,36 +87,18 @@ function ProfileDetails() {
         </div>
         <hr className="w-[100%] mx-auto h-[30px]" />
         <div className="w-[910px] border-green-500 h-fit  flex flex-wrap gap-1 mb-[25px] max-[980px]:w-[790px] max-[830px]:w-[640px] max-[680px]:w-[520px] max-[550px]:w-[400px] max-[450px]:w-[300px]">
-          <div className=" h-fit relative">
-            <img
-              src={img2}
-              className="w-[300px] h-[300px] object-cover max-[980px]:w-[260px] max-[980px]:h-[260px] max-[830px]:w-[210px] max-[830px]:h-[210px] max-[680px]:w-[170px] max-[680px]:h-[170px] max-[550px]:w-[130px] max-[550px]:h-[130px] max-[450px]:w-[96.7px] max-[450px]:h-[96.7px]"
-            />
-            <div className="absolute bottom-0 w-[300px]  flex items-center gap-1 p-1 px-1.5 max-[980px]:w-[260px] max-[830px]:w-[210px] max-[680px]:w-[170px] max-[550px]:w-[130px] max-[450px]:w-[96.7px]">
-              <FaRegHeart className="text-colors-color3 text-[18px]" />
-              <p className="text-[18px]">210</p>
+          {userDetails?.posts.reverse().map((item) => (
+            <div className=" h-fit relative" onClick={() => navigate(`/post-details/${item.id}`)}>
+              <img
+                src={"https://localhost:7018/Imgs/" + item.img}
+                className="w-[300px] h-[300px] object-cover max-[980px]:w-[260px] max-[980px]:h-[260px] max-[830px]:w-[210px] max-[830px]:h-[210px] max-[680px]:w-[170px] max-[680px]:h-[170px] max-[550px]:w-[130px] max-[550px]:h-[130px] max-[450px]:w-[96.7px] max-[450px]:h-[96.7px]"
+              />
+              <div className="absolute bottom-0 w-[300px]  flex items-center gap-1 p-1 px-1.5 max-[980px]:w-[260px] max-[830px]:w-[210px] max-[680px]:w-[170px] max-[550px]:w-[130px] max-[450px]:w-[96.7px]">
+                <FaRegHeart className="text-colors-color3 text-[18px]" />
+                <p className="text-[18px]">210</p>
+              </div>
             </div>
-          </div>
-          <div className=" h-fit relative">
-            <img
-              src={img3}
-              className="w-[300px] h-[300px] object-cover max-[980px]:w-[260px] max-[980px]:h-[260px] max-[830px]:w-[210px] max-[830px]:h-[210px] max-[680px]:w-[170px] max-[680px]:h-[170px] max-[550px]:w-[130px] max-[550px]:h-[130px] max-[450px]:w-[96.7px] max-[450px]:h-[96.7px]"
-            />
-            <div className="absolute bottom-0 w-[300px]  flex items-center gap-1 p-1 px-1.5 max-[980px]:w-[260px] max-[830px]:w-[210px] max-[680px]:w-[170px] max-[550px]:w-[130px] max-[450px]:w-[96.7px]">
-              <FaRegHeart className="text-colors-color3 text-[18px]" />
-              <p className="text-[18px]">210</p>
-            </div>
-          </div>
-          <div className=" h-fit relative">
-            <img
-              src={img4}
-              className="w-[300px] h-[300px] object-cover max-[980px]:w-[260px] max-[980px]:h-[260px] max-[830px]:w-[210px] max-[830px]:h-[210px] max-[680px]:w-[170px] max-[680px]:h-[170px] max-[550px]:w-[130px] max-[550px]:h-[130px] max-[450px]:w-[96.7px] max-[450px]:h-[96.7px]"
-            />
-            <div className="absolute bottom-0 w-[300px]  flex items-center gap-1 p-1 px-1.5 max-[980px]:w-[260px] max-[830px]:w-[210px] max-[680px]:w-[170px] max-[550px]:w-[130px] max-[450px]:w-[96.7px]">
-              <FaRegHeart className="text-colors-color3 text-[18px]" />
-              <p className="text-[18px]">210</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

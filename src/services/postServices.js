@@ -6,3 +6,7 @@ export const Create = (data) =>{
         "Content-Type": "multipart/form-data",
     }});
 };
+
+export const getPostDetailes = (id) =>{
+    return httpClient.get(`Post/GetPost/${id}`);
+};
