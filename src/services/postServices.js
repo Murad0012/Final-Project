@@ -14,3 +14,7 @@ export const getPostDetailes = (id) =>{
 export const UpdatePost = (data) =>{
     return httpClient.put(`Post/UpdatePost/`,data);
 };
+
+export const DeletePost = (postId) => {
+    return httpClient.delete(`Post/DeletePost/${postId}`);
+};

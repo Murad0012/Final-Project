@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { getPostDetailes, UpdatePost } from "../../services/postServices";
+import {
+  getPostDetailes,
+  UpdatePost,
+  DeletePost,
+} from "../../services/postServices";
 import { IoCreateOutline } from "react-icons/io5";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
@@ -66,6 +70,17 @@ function PostEdit() {
         });
     },
   });
+
+  // Delete Post //
+  const handleDelete = () => {
+    DeletePost(postDetails?.id)
+      .then((res) => {
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.error("Error deleting post:", error);
+      }); 
+  };
 
   // User Check //
   const { token } = useSelector((state) => state.account);
@@ -136,6 +151,7 @@ function PostEdit() {
                 <button
                   className="bg-colors-color1 p-3 rounded-[8px] max-[800px]:bg-colors-color2 transition duration-200
                   hover:opacity-70"
+                  onClick={() => navigate(-1)}
                 >
                   Cancel
                 </button>
@@ -143,6 +159,7 @@ function PostEdit() {
                   className="font-bold bg-red-500 p-3 rounded-[8px]
               transition duration-200
               hover:opacity-60"
+                  onClick={() => handleDelete(postDetails.id)}
                 >
                   Delete
                 </button>

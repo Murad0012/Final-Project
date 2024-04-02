@@ -1,6 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import { useSelector } from "react-redux";
+import { GetNonFollowedUsers } from "../../services/userInfoServices";
 
 import img3 from "../imgs/Netflix logo.jpg";
 import img4 from "../imgs/netflixPost.png";
@@ -23,6 +26,27 @@ function Home() {
 
   const navigate = useNavigate();
 
+  // Show Users //
+  const { token } = useSelector((state) => state.account);
+
+  const user = token != null ? jwtDecode(token) : null;
+
+  const [nonFollowedUsers, setNonFollowedUsers] = useState([]);
+
+  console.log(user.UserID);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await GetNonFollowedUsers(user.UserID);
+        console.log(result.data);
+        setNonFollowedUsers(result.data);
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+    fetchData();
+  }, [user.id]);
+
   return (
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px]">
       <div className="flex max-[1080px]:pt-[20px] pb-[100px]">
@@ -44,7 +68,7 @@ function Home() {
                   <div className="flex flex-col justify-center">
                     <h1 className="text-[24px] font-bold max-[550px]:text-[19px]">
                       Netflix
-                    </h1>
+                    </h1>           
                     <p className="text-[14px] text-gray-500 max-[550px]:text-[12px]">
                       3 days ago
                     </p>
@@ -55,9 +79,15 @@ function Home() {
                     Thank me later
                   </h1>
                   <div className="flex gap-3 flex-wrap">
-                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#netflix</p>
-                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#movie</p> 
-                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#netflixhome</p> 
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">
+                      #netflix
+                    </p>
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">
+                      #movie
+                    </p>
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">
+                      #netflixhome
+                    </p>
                   </div>
                 </div>
                 <img
@@ -74,7 +104,10 @@ function Home() {
                       />
                       <p>120</p>
                     </div>
-                    <BiCommentDetail className="text-[28px]" onClick={() => navigate("/post-details/1")}/>
+                    <BiCommentDetail
+                      className="text-[28px]"
+                      onClick={() => navigate("/post-details/1")}
+                    />
                   </div>
                   <HiOutlineSave className="text-[28px]" />
                 </div>
@@ -106,9 +139,15 @@ function Home() {
                     Fall 2024 |
                   </h1>
                   <div className="flex gap-3 flex-wrap">
-                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#netflix</p>
-                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#movie</p> 
-                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#netflixhome</p> 
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">
+                      #netflix
+                    </p>
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">
+                      #movie
+                    </p>
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">
+                      #netflixhome
+                    </p>
                   </div>
                 </div>
                 <img
@@ -116,7 +155,7 @@ function Home() {
                   className="w-[650px] object-cover max-[800px]:w-[480px] max-[550px]:w-[100%] rounded-none"
                 />
                 <div className="flex justify-between w-100% max-[550px]:px-[20px]">
-                <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-3">
                     <div className="flex items-center gap-3">
                       <FaHeart
                         className="text-[28px] w-[29px] transition duration-200	"
@@ -125,7 +164,10 @@ function Home() {
                       />
                       <p>120</p>
                     </div>
-                    <BiCommentDetail className="text-[28px]" onClick={() => navigate("/post-details/1")}/>
+                    <BiCommentDetail
+                      className="text-[28px]"
+                      onClick={() => navigate("/post-details/1")}
+                    />
                   </div>
                   <HiOutlineSave className="text-[28px]" />
                 </div>
@@ -157,9 +199,15 @@ function Home() {
                     YouTube - Check it out!{" "}
                   </h1>
                   <div className="flex gap-3 flex-wrap">
-                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#netflix</p>
-                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#movie</p> 
-                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">#netflixhome</p> 
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">
+                      #netflix
+                    </p>
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">
+                      #movie
+                    </p>
+                    <p className="p-1 px-2 bg-colors-color3 rounded-[8px]">
+                      #netflixhome
+                    </p>
                   </div>
                 </div>
                 <img
@@ -189,36 +237,21 @@ function Home() {
             <h1 className="text-[30px] font-bold">Make New Friends</h1>
           </div>
           <div className="flex flex-col gap-[25px]">
-            <div
-              className="flex gap-[14px] items-center w-[410px] h-[82px] bg-colors-color1 pl-[10px] rounded-[8px] border border-colors-color1
+            {nonFollowedUsers.map((user) => (
+              <div
+                className="flex gap-[14px] items-center w-[410px] h-[82px] bg-colors-color1 pl-[10px] rounded-[8px] border border-colors-color1
             transition-all duration-200 hover:border-colors-color3"
-            >
-              <img src={img3} className="rounded-[50%] w-[50px] object-cover" />
-              <h1 className="text-[18px] font-bold w-[220px]">Netflix</h1>
-              <button className="bg-colors-color3 px-[16px] py-[7px] rounded-[5px] transition-all duration-400 hover:opacity-65">
-                Follow
-              </button>
-            </div>
-            <div
-              className="flex gap-[14px] items-center w-[410px] h-[82px] bg-colors-color1 pl-[10px] rounded-[8px] border border-colors-color1
-            transition-all duration-200 hover:border-colors-color3"
-            >
-              <img src={img5} className="rounded-[50%] w-[50px] object-cover" />
-              <h1 className="text-[18px] font-bold w-[220px]">Xbox</h1>
-              <button className="bg-colors-color3 px-[16px] py-[7px] rounded-[5px] transition-all duration-400 hover:opacity-65">
-                Follow
-              </button>
-            </div>
-            <div
-              className="flex gap-[14px] items-center w-[410px] h-[82px] bg-colors-color1 pl-[10px] rounded-[8px] border border-colors-color1
-            transition-all duration-200 hover:border-colors-color3"
-            >
-              <img src={img7} className="rounded-[50%] w-[50px] object-cover" />
-              <h1 className="text-[18px] font-bold w-[220px]">Junemeniz_23</h1>
-              <button className="bg-colors-color3 px-[16px] py-[7px] rounded-[5px] transition-all duration-400 hover:opacity-65">
-                Follow
-              </button>
-            </div>
+            onClick={() => navigate(`/profile-details/${user?.id}`)}
+              >
+                <img
+                  src={"https://localhost:7018/Imgs/" + user.profileImg}
+                  className="rounded-[50%] w-[50px] object-cover"
+                />
+                <h1 className="text-[18px] font-bold w-[220px]">
+                  {user.userName}
+                </h1>
+              </div>
+            ))}
           </div>
         </div>
       </div>

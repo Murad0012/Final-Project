@@ -10,3 +10,7 @@ export const UpdateUserDetailes = (userDetails) => {
         "Content-Type": "multipart/form-data",
     }});
 };
+
+export const GetNonFollowedUsers = (UserId) =>{
+    return httpClient.get(`Relationship/GetNonFollowedUsers/${UserId}`);
+};
