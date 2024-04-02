@@ -3,10 +3,11 @@ import { IoCreateOutline } from "react-icons/io5";
 import { getUserDetailes } from "../../services/userInfoServices";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
+import { useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 import { UpdateUserDetailes } from "../../services/userInfoServices";
 import { updateUser } from "../../redux/accountSlice";
 import { useDispatch } from "react-redux";
-import img1 from "../imgs/Profile.jpg";
 
 function ProfileEdit() {
   // Character counter //
@@ -89,6 +90,17 @@ function ProfileEdit() {
         });
     },
   });
+
+  // User Check //
+  const { token } = useSelector((state) => state.account);
+
+  const user = token != null ? jwtDecode(token) : null;
+
+  useEffect(() => {
+    if (userDetails && user && param.id !== user.UserID) {
+      navigate("*");
+    }
+  }, [userDetails, user, navigate]);
 
   return (
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px] max-[1080px]:mb-[60px]">

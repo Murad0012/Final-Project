@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getPostDetailes, UpdatePost } from "../../services/postServices";
 import { IoCreateOutline } from "react-icons/io5";
-
-import img1 from "../imgs/post1.jpg";
+import { useNavigate, useParams } from "react-router-dom";
+import { useFormik } from "formik";
+import { useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 
 function PostEdit() {
   // Character counter //
@@ -16,6 +19,65 @@ function PostEdit() {
   };
 
   const isLimitReached = charCount >= maxChars;
+
+  // Post Info //
+  const param = useParams();
+
+  const [postDetails, setPostDetails] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getPostDetailes(param.id);
+        console.log(result.data);
+        setPostDetails(result.data);
+        setText(result.data?.caption || "");
+        setCharCount(result.data?.caption ? result.data.caption.length : 0);
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+    fetchData();
+  }, [param.id]);
+
+  // Update Post //
+  const navigate = useNavigate();
+
+  const formik = useFormik({
+    initialValues: {
+      caption: "",
+      tags: "",
+      id: param.id,
+    },
+    onSubmit: (values) => {
+      if (values.caption == "") {
+        values.caption = postDetails?.caption;
+      }
+      if (values.tags == "") {
+        values.tags = postDetails?.tags;
+      }
+      UpdatePost(values)
+        .then((res) => {
+          navigate(`/post-details/${param.id}`);
+          console.log(values);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  });
+
+  // User Check //
+  const { token } = useSelector((state) => state.account);
+
+  const user = token != null ? jwtDecode(token) : null;
+
+  useEffect(() => {
+    if (postDetails && user && postDetails.userId !== user.UserID) {
+      navigate("*");
+    }
+  }, [postDetails, user, navigate]);
+
   return (
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px]">
       <div className="flex max-[1080px]:pb-[100px]">
@@ -29,7 +91,12 @@ function PostEdit() {
               <h3 className="font-bold">Caption</h3>
               <textarea
                 value={text}
-                onChange={handleChange}
+                onChange={(event) => {
+                  handleChange(event);
+                  formik.handleChange(event);
+                }}
+                name="caption"
+                defaultValue={postDetails?.caption}
                 placeholder="Type caption..."
                 rows={4}
                 maxLength={maxChars}
@@ -42,10 +109,12 @@ function PostEdit() {
               </p>
             </div>
             <div className="flex flex-col gap-2 ">
-              <h3 className="font-bold">Photo (You can't change the photo !)</h3>
+              <h3 className="font-bold">
+                Photo (You can't change the photo !)
+              </h3>
               <div className="h-[550px] w-[100%] rounded-[10px] bg-colors-color1 flex justify-center items-center max-[800px]:bg-colors-color2">
                 <img
-                  src={img1}
+                  src={"https://localhost:7018/Imgs/" + postDetails?.img}
                   className="max-w-[90%] max-h-[90%] object-contain "
                 />
               </div>
@@ -57,6 +126,9 @@ function PostEdit() {
               <input
                 className="bg-colors-color1 rounded-[10px] resize-none p-[20px] outline-none max-[800px]:bg-colors-color2"
                 placeholder="art,game,movie"
+                name="tags"
+                onChange={formik.handleChange}
+                defaultValue={postDetails?.tags}
               ></input>
             </div>
             <div className=" flex justify-end mb-10 max-[360px]:justify-center">
@@ -67,12 +139,17 @@ function PostEdit() {
                 >
                   Cancel
                 </button>
-                <button className="font-bold bg-red-500 p-3 rounded-[8px]
+                <button
+                  className="font-bold bg-red-500 p-3 rounded-[8px]
               transition duration-200
-              hover:opacity-60">Delete</button>
+              hover:opacity-60"
+                >
+                  Delete
+                </button>
                 <button
                   className="bg-colors-color3 p-3 rounded-[8px] transition duration-200
                   hover:opacity-60"
+                  onClick={formik.handleSubmit}
                 >
                   Update
                 </button>

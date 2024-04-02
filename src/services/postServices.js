@@ -10,3 +10,7 @@ export const Create = (data) =>{
 export const getPostDetailes = (id) =>{
     return httpClient.get(`Post/GetPost/${id}`);
 };
+
+export const UpdatePost = (data) =>{
+    return httpClient.put(`Post/UpdatePost/`,data);
+};
