@@ -46,7 +46,11 @@ function App() {
                 </ProtectedRouted>
               }
             />
-            <Route path="/explore" element={<Explore />} />
+            <Route path="/explore" element={
+              <ProtectedRouted>
+                <Explore/>
+              </ProtectedRouted>
+            } />
             <Route path="/friends" element={<Friends />} />
             <Route path="/saved" element={<Saved />} />
             <Route path="/create-post" element={<CreatePost />} />

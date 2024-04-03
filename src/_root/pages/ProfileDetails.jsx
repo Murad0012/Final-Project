@@ -5,9 +5,6 @@ import { useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 
 import img1 from "../imgs/Default Profile.jpg";
-import img2 from "../imgs/post1.jpg";
-import img3 from "../imgs/post2.webp";
-import img4 from "../imgs/post3.jpg";
 
 import { IoCreateOutline } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";

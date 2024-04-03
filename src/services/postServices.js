@@ -18,3 +18,7 @@ export const UpdatePost = (data) =>{
 export const DeletePost = (postId) => {
     return httpClient.delete(`Post/DeletePost/${postId}`);
 };
+
+export const GetExplorePosts = (userId) =>{
+    return httpClient.get(`Post/Explore/${userId}`);
+};

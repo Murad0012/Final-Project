@@ -72,7 +72,7 @@ function PostDetails() {
             className="rounded-[50%] w-[45px] h-[45px] object-cover"
           />
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2" onClick={() => navigate(`/profile-details/${postDetails?.userId}`)}>
               <h1 className="font-bold">{postDetails?.userName}</h1>
               {checkOwner && (
                 <HiAdjustments
