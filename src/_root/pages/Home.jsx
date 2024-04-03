@@ -5,11 +5,11 @@ import { jwtDecode } from "jwt-decode";
 import { useSelector } from "react-redux";
 import { GetNonFollowedUsers } from "../../services/userInfoServices";
 
+import img1 from '../imgs/Default Profile.jpg'
 import img3 from "../imgs/Netflix logo.jpg";
 import img4 from "../imgs/netflixPost.png";
 import img5 from "../imgs/Xbox Logo.jpg";
 import img6 from "../imgs/XboxPost.png";
-import img7 from "../imgs/Jlogo.jpg";
 import img8 from "../imgs/blenderlogo.jpg";
 import img9 from "../imgs/blenderpost.png";
 
@@ -244,8 +244,8 @@ function Home() {
             onClick={() => navigate(`/profile-details/${user?.id}`)}
               >
                 <img
-                  src={"https://localhost:7018/Imgs/" + user.profileImg}
-                  className="rounded-[50%] w-[50px] object-cover"
+                  src={user.profileImg ? "https://localhost:7018/Imgs/" + user.profileImg : img1}
+                  className="rounded-[50%] w-[50px] h-[50px] object-cover"
                 />
                 <h1 className="text-[18px] font-bold w-[220px]">
                   {user.userName}

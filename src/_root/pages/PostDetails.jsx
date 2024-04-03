@@ -10,6 +10,7 @@ import { useFormik } from "formik";
 import { FaHeart } from "react-icons/fa";
 import { HiAdjustments } from "react-icons/hi";
 import { HiOutlineSave } from "react-icons/hi";
+import img2 from '../imgs/Default Profile.jpg'
 
 function PostDetails() {
   // Post Info //
@@ -98,7 +99,7 @@ function PostDetails() {
           </div>
         </div>
         <img src={"https://localhost:7018/Imgs/" + postDetails?.img} alt="" />
-        <div className="flex gap-5 border-b-gray-500 border border-colors-color1 pb-4">
+        <div className="flex gap-5 border-b-gray-500 border border-colors-color2 pb-4">
           <div className="flex gap-2 items-center">
             <FaHeart className="text-[30px] w-[32px]" />
             <h3 className="font-bold text-colors-color3">120</h3>
@@ -113,7 +114,7 @@ function PostDetails() {
             <div key={index} className="flex flex-col gap-1">
               <div className="flex items-center gap-2">
                 <img
-                  src={"https://localhost:7018/Imgs/" + comment.userProfileImg}
+                  src={comment.userProfileImg ? "https://localhost:7018/Imgs/" + comment.userProfileImg : img2}
                   className="rounded-[50%] w-[50px] h-[50px] object-cover"
                 />
                 <div>

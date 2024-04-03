@@ -127,6 +127,7 @@ function CreatePost() {
                 <button
                   className="bg-colors-color1 p-3 rounded-[8px] max-[800px]:bg-colors-color2 transition duration-200
                   hover:opacity-70"
+                  onClick={() => navigate(-1)}
                 >
                   Cancel
                 </button>

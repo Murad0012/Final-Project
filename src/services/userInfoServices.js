@@ -14,3 +14,7 @@ export const UpdateUserDetailes = (userDetails) => {
 export const GetNonFollowedUsers = (UserId) =>{
     return httpClient.get(`Relationship/GetNonFollowedUsers/${UserId}`);
 };
+
+export const SearchUser = (userName,filterType,userId) =>{
+    return httpClient.get(`/Search/SearchUser?username=${userName}&filterType=${filterType}&userId=${userId}`);
+};
