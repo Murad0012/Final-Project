@@ -33,7 +33,6 @@ function ProfileDetails() {
         setUserDetails(result.data);
 
         const isFollowing = await CheckFollow(param.id, user.UserID);
-        console.log(isFollowing.data)
         setIsFollowing(isFollowing.data);
       } catch (error) {
         console.error("Error fetching user details:", error);

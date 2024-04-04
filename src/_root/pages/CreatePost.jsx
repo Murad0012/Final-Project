@@ -25,7 +25,7 @@ function CreatePost() {
   // Create Post // 
   const navigate = useNavigate();
 
-  const { userName, token } = useSelector((state) => state.account);
+  const { token } = useSelector((state) => state.account);
 
   const user = token != null ? jwtDecode(token) : null;
 

@@ -70,15 +70,8 @@ function ProfileEdit() {
       if (values.profileImg === null) {
         values.profileImg = userDetails?.profileImg;
       }
-
-      const formData = new FormData();
-      formData.append("userName", values.userName);
-      formData.append("name", values.name);
-      formData.append("userId", values.userId);
-      formData.append("description", values.description);
-      formData.append("profileImg", values.profileImg);
-
-      UpdateUserDetailes(formData)
+        
+      UpdateUserDetailes(values)
         .then((res) => {
           dispatch(updateUser(values.userName));
           navigate(`/profile-details/${param.id}`);
