@@ -69,8 +69,11 @@ function PostDetails() {
     try {
       await LikePost(param.id, user.UserID);
       setIsLiked(false)
-      const result = await getPostDetailes(param.id);
-      setPostDetails(result.data);
+
+      setPostDetails(prevState => ({
+        ...prevState,
+        likeCount: prevState.likeCount + 1 
+      }));
     } catch (error) {
       console.error("Error following user:", error);
     }
@@ -82,8 +85,10 @@ function PostDetails() {
       await UnLikePost(param.id, user.UserID);
       setIsLiked(true)
 
-      const result = await getPostDetailes(param.id);
-      setPostDetails(result.data);
+      setPostDetails(prevState => ({
+        ...prevState,
+        likeCount: prevState.likeCount - 1
+      }));
     } catch (error) {
       console.error("Error following user:", error);
     }
@@ -156,7 +161,7 @@ function PostDetails() {
             <div key={index} className="flex flex-col gap-1">
               <div className="flex items-center gap-2">
                 <img
-                  src={
+                  src={ 
                     comment.userProfileImg
                       ? "https://localhost:7018/Imgs/" + comment.userProfileImg
                       : img1
