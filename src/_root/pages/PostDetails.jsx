@@ -10,7 +10,7 @@ import { useFormik } from "formik";
 import { FaHeart } from "react-icons/fa";
 import { HiAdjustments } from "react-icons/hi";
 import { HiOutlineSave } from "react-icons/hi";
-import img2 from '../imgs/Default Profile.jpg'
+import img1 from '../imgs/Default Profile.jpg'
 
 function PostDetails() {
   // Post Info //
@@ -68,16 +68,16 @@ function PostDetails() {
       <div className="flex flex-col w-[850px] gap-5 my-[30px] max-[1080px]:mb-[100px] max-[900px]:w-[650px] max-[700px]:w-[450px] max-[500px]:w-[300px]">
         <div className="flex items-center gap-3">
           <img
-            src={"https://localhost:7018/Imgs/" + postDetails?.userProfileImg}
+            src={postDetails?.userProfileImg ? "https://localhost:7018/Imgs/" + postDetails?.userProfileImg : img1}
             className="rounded-[50%] w-[45px] h-[45px] object-cover"
           />
           <div>
-            <div className="flex items-center gap-2" onClick={() => navigate(`/profile-details/${postDetails?.userId}`)}>
+            <div className="flex items-center gap-2">
               <h1 className="font-bold">{postDetails?.userName}</h1>
               {checkOwner && (
                 <HiAdjustments
                 className="text-[20px]"
-                onClick={() => navigate(`/post-edit/${param.id}`)}
+                onClick={() => navigate(`/post-edit/${postDetails?.id}`)}
                 />
               )}
             </div>
@@ -114,7 +114,7 @@ function PostDetails() {
             <div key={index} className="flex flex-col gap-1">
               <div className="flex items-center gap-2">
                 <img
-                  src={comment.userProfileImg ? "https://localhost:7018/Imgs/" + comment.userProfileImg : img2}
+                  src={comment.userProfileImg ? "https://localhost:7018/Imgs/" + comment.userProfileImg : img1}
                   className="rounded-[50%] w-[50px] h-[50px] object-cover"
                 />
                 <div>

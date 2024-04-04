@@ -105,9 +105,6 @@ function Friends() {
                 />
                 <h1 className="font-bold max-[380px]:text-[12px]">{user?.userName}</h1>
               </div>
-              <button className="bg-colors-color3 px-[16px] py-[7px] rounded-[5px] transition-all duration-400 hover:opacity-65 max-[380px]:px-[12px] max-[380px]:py-[5px] max-[380px]:text-[12px]">
-                Follow
-              </button>
             </div>
           ))}
         </div>
