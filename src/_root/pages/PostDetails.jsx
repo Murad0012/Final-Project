@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getPostDetailes } from "../../services/postServices";
 import { LikePost, UnLikePost, CheckLike } from "../../services/likeService";
+import { SavedPost, UnSavedPost, CheckSave } from "../../services/savedService"; 
 import { useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 import { AddComment } from "../../services/commentService";
@@ -17,6 +18,7 @@ function PostDetails() {
   // Post Info //
   const [postDetails, setPostDetails] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   const { token } = useSelector((state) => state.account);
 
@@ -37,6 +39,9 @@ function PostDetails() {
 
         const isLiked = await CheckLike(param.id, user.UserID);
         setIsLiked(isLiked.data);
+
+        const isSaved = await CheckSave(param.id, user.UserID);
+        setIsSaved(isSaved.data);
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
@@ -89,6 +94,25 @@ function PostDetails() {
         ...prevState,
         likeCount: prevState.likeCount - 1
       }));
+    } catch (error) {
+      console.error("Error following user:", error);
+    }
+  };
+
+  // Save Post //
+  const handleSavePost = async () => {
+    try {
+      await SavedPost(param.id, user.UserID);
+      setIsSaved(false)
+    } catch (error) {
+      console.error("Error following user:", error);
+    }
+  };
+
+  const handleUnSavePost = async () => {
+    try {
+      await UnSavedPost(param.id, user.UserID);
+      setIsSaved(true)
     } catch (error) {
       console.error("Error following user:", error);
     }
@@ -152,7 +176,11 @@ function PostDetails() {
             </h3>
           </div>
           <div className="flex gap-2 items-center">
-            <HiOutlineSave className="text-[30px]" />
+            {isSaved ? (
+              <HiOutlineSave className="text-[30px]" onClick={handleSavePost}/>
+            ) : (
+              <HiOutlineSave className="text-[30px] text-colors-color3" onClick={handleUnSavePost}/>
+            )}
             <h3 className="font-bold text-colors-color3">Save</h3>
           </div>
         </div>

@@ -1,13 +1,13 @@
 import { httpClient } from '../utils/httpClient'
 
-export const FollowUser = (followedId,userId) =>{
-    return httpClient.post(`Relationship/Follow?followedId=${followedId}&userId=${userId}`);
+export const FollowUser = (postId,userId) =>{
+    return httpClient.post(`Relationship/Follow?postId=${postId}&userId=${userId}`);
 };
 
-export const UnFollowUser = (followedId,userId) =>{
-    return httpClient.delete(`Relationship/Unfollow?followedId=${followedId}&userId=${userId}`);
+export const UnFollowUser = (postId,userId) =>{
+    return httpClient.delete(`Relationship/Unfollow?postId=${postId}&userId=${userId}`);
 };
 
-export const CheckFollow = (followedId,userId) =>{
-    return httpClient.get(`Relationship/CheckFollow?followedId=${followedId}&userId=${userId}`);
+export const CheckFollow = (postId,userId) =>{
+    return httpClient.get(`Relationship/CheckFollow?postId=${postId}&userId=${userId}`);
 };
