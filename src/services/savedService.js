@@ -11,3 +11,7 @@ export const UnSavedPost = (postId,userId) =>{
 export const CheckSave = (postId,userId) =>{
     return httpClient.get(`SavedPost/CheckSave?postId=${postId}&userId=${userId}`);
 };
+
+export const GetSavedPosts = (userId) =>{
+    return httpClient.get(`SavedPost/GetSavedPosts?userId=${userId}`);
+};

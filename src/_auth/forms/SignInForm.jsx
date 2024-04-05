@@ -29,6 +29,7 @@ function SignInForm() {
     onSubmit: (values) => {
       Login(values)
         .then((res) => {
+          console.log(res.data)
           dispatch(logInAction(res.data));
           navigate("/home");
         })

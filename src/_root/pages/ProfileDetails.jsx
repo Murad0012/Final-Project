@@ -51,6 +51,7 @@ function ProfileDetails() {
     try {
       await FollowUser(param.id, user.UserID);
       setIsFollowing(false)
+      
       const result = await getUserDetailes(param.id);
       setUserDetails(result.data);
       } catch (error) {
@@ -63,6 +64,7 @@ function ProfileDetails() {
     try {
       await UnFollowUser(param.id, user.UserID);
       setIsFollowing(true)
+      
       const result = await getUserDetailes(param.id);
       setUserDetails(result.data);
     } catch (error) {
@@ -138,7 +140,7 @@ function ProfileDetails() {
         </div>
         <hr className="w-[100%] mx-auto h-[30px]" />
         <div className="w-[910px] border-green-500 h-fit  flex flex-wrap gap-1 mb-[25px] max-[980px]:w-[790px] max-[830px]:w-[640px] max-[680px]:w-[520px] max-[550px]:w-[400px] max-[450px]:w-[300px]">
-          {userDetails?.posts.reverse().map((item) => (
+          {userDetails?.posts.map((item) => (
             <div
               className=" h-fit relative"
               onClick={() => navigate(`/post-details/${item.id}`)}
@@ -147,11 +149,7 @@ function ProfileDetails() {
                 src={"https://localhost:7018/Imgs/" + item.img}
                 className="w-[300px] h-[300px] object-cover max-[980px]:w-[260px] max-[980px]:h-[260px] max-[830px]:w-[210px] max-[830px]:h-[210px] max-[680px]:w-[170px] max-[680px]:h-[170px] max-[550px]:w-[130px] max-[550px]:h-[130px] max-[450px]:w-[96.7px] max-[450px]:h-[96.7px]"
               />
-              <div className="absolute bottom-0 w-[300px]  flex items-center gap-1 p-1 px-1.5 max-[980px]:w-[260px] max-[830px]:w-[210px] max-[680px]:w-[170px] max-[550px]:w-[130px] max-[450px]:w-[96.7px]">
-                <FaRegHeart className="text-colors-color3 text-[18px]" />
-                <p className="text-[18px]">210</p>
               </div>
-            </div>
           ))}
         </div>
       </div>

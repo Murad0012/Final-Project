@@ -71,7 +71,7 @@ function Friends() {
               className="bg-colors-color1 flex justify-between items-center top-[3em] rounded-[0.5em]  cursor-pointer h-[60px] px-[1em] max-[800px]:bg-colors-color2"
               onClick={handleClick}
             >
-              <h1 className="font-bold text-[13px]">All User</h1>
+              <h1 className="font-bold text-[13px]">Select</h1>
               <IoIosArrowDown
                 style={{ rotate: isClicked ? "-180deg" : "0deg" }}
               />

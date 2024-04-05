@@ -22,3 +22,7 @@ export const DeletePost = (postId) => {
 export const GetExplorePosts = (userId) =>{
     return httpClient.get(`Post/Explore/${userId}`);
 };
+
+export const getPosts = () =>{
+    return httpClient.get(`Post/GetPosts`);
+};

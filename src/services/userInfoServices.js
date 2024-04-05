@@ -18,3 +18,11 @@ export const GetNonFollowedUsers = (UserId) =>{
 export const SearchUser = (userName,filterType,userId) =>{
     return httpClient.get(`/Search/SearchUser?username=${userName}&filterType=${filterType}&userId=${userId}`);
 };
+
+export const DeleteUser = (userId) => {
+    return httpClient.delete(`Account/DeleteUser?id=${userId}`);
+};
+
+export const GetUsers = () => {
+    return httpClient.get(`Account/GetUsers`);
+};

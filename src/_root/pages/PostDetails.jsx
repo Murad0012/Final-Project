@@ -29,7 +29,7 @@ function PostDetails() {
   const navigate = useNavigate();
 
   const checkOwner = user && user.UserID === postDetails?.userId;
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {

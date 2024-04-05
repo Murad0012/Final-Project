@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import { Outlet } from "react-router-dom";
+import { useDispatch,useSelector } from "react-redux";
+import { getUserDetailes } from "../services/userInfoServices";
 import { useNavigate, useLocation } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+import { DeleteUser,GetUsers } from '../services/userInfoServices'
 
 import img1 from "../_root/imgs/Streaminny Logo.png";
 import img2 from "../_root/imgs/Profile.jpg";
@@ -13,6 +17,49 @@ function AdminLayout() {
   const res = path.pathname.toLowerCase();
 
   const navigate = useNavigate();
+
+  // User Info // 
+  const { userName, token, role } = useSelector((state) => state.account);
+
+  console.log(role)
+
+  if(role == "User"){
+    navigate("*")
+  }
+
+  const user = token != null ? jwtDecode(token) : null;
+
+  const [userDetails, setUserDetails] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getUserDetailes(user.UserID);
+        setUserDetails(result.data);
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+    fetchData();
+  }, [user?.UserID]);
+
+  let imagesrc = userDetails?.profileImg ? "https://localhost:7018/Imgs/" + userDetails.profileImg : img2;
+
+  // Get Users //
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const result = await GetUsers();
+        setUsers(result.data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      }
+    };
+    fetchUsers();
+  }, []);
+
   return (
     <div className="flex flex-col max-[800px]:bg-colors-color1">
       <div className="w-screen fixed hidden max-[1080px]:block z-50">
@@ -69,12 +116,12 @@ function AdminLayout() {
               onClick={() => navigate("/profile-details/1")}
             >
               <img
-                src={img2}
+                src={imagesrc}
                 className="w-[54px] rounded-full object-cover ml-2 max-[1590px]:ml-0"
               />
               <div className="flex flex-col justify-center max-[1590px]:hidden">
-                <h1 className="text-xl font-bold ">Murad0012</h1>
-                <h3 className="text-gray-500 ">@murad0012</h3>
+              <h1 className="text-xl font-bold ">{userName}</h1>
+              <h3 className="text-gray-500 ">@{userName?.toLowerCase()}</h3>
               </div>
             </div>
             <ul className="flex flex-col gap-[20px] w-[260px] max-[1590px]:w-[65px] ">

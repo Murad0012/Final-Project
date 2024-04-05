@@ -1,7 +1,8 @@
 import React, { useState,useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 import { getUserDetailes } from "../services/userInfoServices";
 
 import img1 from "../_root/imgs/Streaminny Logo.png";
@@ -12,9 +13,7 @@ import { MdExplore, MdAddPhotoAlternate } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
 import { HiOutlineSave } from "react-icons/hi";
 import { IoMdExit } from "react-icons/io";
-import { useSelector } from "react-redux";
 import { logOutAction } from "../redux/accountSlice";
-import { jwtDecode } from "jwt-decode";
 
 function RootLayout() {
   // Page active style // 
