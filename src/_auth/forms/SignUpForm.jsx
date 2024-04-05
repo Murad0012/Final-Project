@@ -4,7 +4,8 @@ import img1 from "../imgs/Logo.png";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { Register } from '../../services/authServices'
+import { Register } from "../../services/authServices";
+import { RegisterSchema } from "../../validations/registerSchema";
 
 function SignUpForm() {
   const [checktype, setChecktype] = useState(true);
@@ -17,18 +18,21 @@ function SignUpForm() {
 
   // Register //
   const formik = useFormik({
-    initialValues:{
-      name:"",
-      userName:"",
-      password:"",
-      email:""
+    initialValues: {
+      name: "",
+      userName: "",
+      password: "",
+      email: "",
     },
-    onSubmit:(values) => {
-      Register(values).then(() => {
-        navigate("/sign-in")
-      }).catch(e => console.log(e));
-    }
-  })
+    onSubmit: (values) => {
+      Register(values)
+        .then(() => {
+          navigate("/sign-in");
+        })
+        .catch((e) => console.log(e));
+    },
+    validationSchema: RegisterSchema,
+  });
 
   return (
     <div className="bg-colors-color1 px-10 py-14 rounded-3xl max-[480px]:w-[320px] max-[480px]:p-0 max-[380px]:w-[300px]">
@@ -57,6 +61,9 @@ function SignUpForm() {
               value={formik.values.name}
               onChange={formik.handleChange}
             />
+            {formik.touched.name && formik.errors.name ? (
+              <div className="text-red-500 text-sm mt-1 ml-1 max-[480px]:text-[12px]">{formik.errors.name}</div>
+            ) : null}
           </div>
           <div className="flex flex-col w-[45%]">
             <label className="text-lg font-medium" htmlFor="username">
@@ -70,6 +77,9 @@ function SignUpForm() {
               value={formik.values.userName}
               onChange={formik.handleChange}
             />
+            {formik.touched.userName && formik.errors.userName ? (
+              <div className="text-red-500 text-sm mt-1 ml-1 max-[480px]:text-[12px]">{formik.errors.userName}</div>
+            ) : null}
           </div>
         </div>
         <div className="mb-2">
@@ -84,6 +94,9 @@ function SignUpForm() {
             value={formik.values.email}
             onChange={formik.handleChange}
           />
+          {formik.touched.email && formik.errors.email ? (
+              <div className="text-red-500 text-sm mt-1 ml-1 max-[480px]:text-[12px]">{formik.errors.email}</div>
+            ) : null}
         </div>
         <div>
           <label className="text-lg font-medium" htmlFor="password">
@@ -98,6 +111,9 @@ function SignUpForm() {
             value={formik.values.password}
             onChange={formik.handleChange}
           />
+          {formik.touched.password && formik.errors.password ? (
+              <div className="text-red-500 text-sm mt-1 ml-1 max-[480px]:text-[12px]">{formik.errors.password}</div>
+          ) : null}
         </div>
         <div className="mt-4 flex gap-1">
           <input
@@ -108,7 +124,7 @@ function SignUpForm() {
           ></input>
           <label htmlFor="checkbox">Show password</label>
         </div>
-        <div className="mt-7">
+        <div className="mt-7 flex flex-col">
           <button
             className="bg-violet-500 text-xl text-white font-bold rounded-xl py-3 w-full transition duration-200
           hover:opacity-70"

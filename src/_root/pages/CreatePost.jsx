@@ -4,6 +4,7 @@ import { Create } from '../../services/postServices'
 import { useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 import { useFormik } from "formik";
+import { CreatePostSchema } from '../../validations/createPostSchema'
 import { useNavigate } from "react-router-dom";
 
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
@@ -41,8 +42,11 @@ function CreatePost() {
       Create(values).then(()=>{
         navigate("/home")
       }).catch(e => console.log(e));
-    }
+    },
+    validationSchema:CreatePostSchema
   })
+
+  console.log(formik.errors)
 
   const onDrop = useCallback(
     (acceptedFiles) => {
@@ -87,6 +91,9 @@ function CreatePost() {
               <p>
                 Characters remaining: {charCount}/{maxChars}
               </p>
+              {formik.touched.caption && formik.errors.caption ? (
+              <div className="text-red-500 ">{formik.errors.caption}</div>
+              ) : null}
             </div>
             <div className="flex flex-col gap-2 ">
               <h3 className="font-bold">Add Photo (PNG,JPEG,JPG,SVG)</h3>
@@ -110,6 +117,9 @@ function CreatePost() {
                   </div>
                 )}
               </div>
+              {formik.touched.img && formik.errors.img ? (
+              <div className="text-red-500 ">{formik.errors.img}</div>
+              ) : null}
             </div>
             <div className="flex flex-col gap-2">
               <h3 className="font-bold">
@@ -121,6 +131,9 @@ function CreatePost() {
                 className="bg-colors-color1 rounded-[10px] resize-none p-[20px] outline-none max-[800px]:bg-colors-color2"
                 placeholder="art,game,movie"
               ></input>
+              {formik.touched.tags && formik.errors.tags ? (
+              <div className="text-red-500 ">{formik.errors.tags}</div>
+              ) : null}
             </div>
             <div className=" flex justify-end mb-10">
               <div className="flex gap-5 w-fit">
