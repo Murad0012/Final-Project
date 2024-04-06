@@ -72,9 +72,11 @@ function AdminLayout() {
                     ? `https://localhost:7018/Imgs/${userDetails?.profileImg}`
                     : defaultProfile
                 }
+                onClick={() => navigate(`/profile-details/${user?.UserID}`)}
                 className="w-[45px] rounded-[50%] object-cover max-[550px]:w-[40px]"
               />
-              <IoMdExit className="text-[32px] text-colors-color3 max-[550px]:text-[28px]" />
+              <IoMdExit className="text-[32px] text-colors-color3 max-[550px]:text-[28px]"
+              onClick={() => dispatch(logOutAction())} />
             </div>
           </div>
         </div>

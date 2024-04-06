@@ -135,7 +135,8 @@ function PostDetails() {
           />
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="font-bold">{postDetails?.userName}</h1>
+              <h1 className="font-bold"
+              onClick={() => navigate(`/profile-details/${postDetails?.userId}`)}>{postDetails?.userName}</h1>
               {checkOwner && (
                 <HiAdjustments
                   className="text-[20px]"
@@ -161,7 +162,7 @@ function PostDetails() {
           </div>
         </div>
         <img src={"https://localhost:7018/Imgs/" + postDetails?.img} alt="" />
-        <div className="flex gap-5 border-b-gray-500 border border-colors-color2 pb-4">
+        <div className="flex gap-5 border-b-gray-500 border border-colors-color1 pb-4">
           <div className="flex gap-2 items-center">
             {isLiked ? (
               <FaHeart

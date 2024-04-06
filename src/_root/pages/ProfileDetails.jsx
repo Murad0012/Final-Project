@@ -86,14 +86,14 @@ function ProfileDetails() {
                 {!checkOwner && 
                   (!isFollowing ? (
                     <button
-                      className="bg-colors-color3 px-[16px] h-[35px] rounded-[5px] transition-all duration-400 hover:opacity-65"
+                      className="bg-colors-color3 px-[16px] h-[35px] rounded-[5px] max-[450px]:px-[4px] max-[450px]:text-[10px] transition-all duration-400 hover:opacity-65"
                       onClick={handleUnFollow}
                     >
                       Unfollow
                     </button>
                   ) : (
                     <button
-                      className="bg-colors-color3 px-[16px] h-[35px] rounded-[5px] transition-all duration-400 hover:opacity-65"
+                      className="bg-colors-color3 px-[16px] h-[35px] rounded-[5px] max-[450px]:px-[4px] max-[450px]:text-[10px] transition-all duration-400 hover:opacity-65"
                       onClick={handleFollow}
                     >
                       Follow

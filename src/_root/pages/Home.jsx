@@ -112,7 +112,7 @@ function Home() {
                     </div>
                   </div>
                 </div>
-                <hr className="w-[80%]" />
+                <hr className="w-[90%]" />
               </React.Fragment>
             ))}
           </div>

@@ -46,14 +46,38 @@ function App() {
                 </ProtectedRouted>
               }
             />
-            <Route path="/explore" element={
-              <ProtectedRouted>
-                <Explore/>
-              </ProtectedRouted>
-            } />
-            <Route path="/friends" element={<Friends />} />
-            <Route path="/saved" element={<Saved />} />
-            <Route path="/create-post" element={<CreatePost />} />
+            <Route
+              path="/explore"
+              element={
+                <ProtectedRouted>
+                  <Explore />
+                </ProtectedRouted>
+              }
+            />
+            <Route
+              path="/friends"
+              element={
+                <ProtectedRouted>
+                  <Friends />
+                </ProtectedRouted>
+              }
+            />
+            <Route
+              path="/saved"
+              element={
+                <ProtectedRouted>
+                  <Saved />
+                </ProtectedRouted>
+              }
+            />
+            <Route
+              path="/create-post"
+              element={
+                <ProtectedRouted>
+                  <CreatePost />
+                </ProtectedRouted>
+              }
+            />
             <Route
               path="/profile-details/:id"
               element={
@@ -62,9 +86,30 @@ function App() {
                 </ProtectedRouted>
               }
             />
-            <Route path="/profile-edit/:id" element={<ProfileEdit />} />
-            <Route path="/post-details/:id" element={<PostDetails />} />
-            <Route path="/post-edit/:id" element={<PostEdit />} />
+            <Route
+              path="/profile-edit/:id"
+              element={
+                <ProtectedRouted>
+                  <ProfileEdit />
+                </ProtectedRouted>
+              }
+            />
+            <Route
+              path="/post-details/:id"
+              element={
+                <ProtectedRouted>
+                  <PostDetails />
+                </ProtectedRouted>
+              }
+            />
+            <Route
+              path="/post-edit/:id"
+              element={
+                <ProtectedRouted>
+                  <PostEdit />
+                </ProtectedRouted>
+              }
+            />
           </Route>
 
           {/* Authentication Layout */}
@@ -74,7 +119,14 @@ function App() {
           </Route>
 
           <Route element={<AdminLayout />}>
-            <Route path="/admin/users" element={<Users />} />
+            <Route
+              path="/admin/users"
+              element={
+                <ProtectedRouted>
+                  <Users />
+                </ProtectedRouted>
+              }
+            />
           </Route>
 
           <Route path="*" element={<NotFound />} />

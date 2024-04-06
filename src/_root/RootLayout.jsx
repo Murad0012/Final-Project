@@ -54,8 +54,9 @@ function RootLayout() {
             </div>
             <div className="flex items-center gap-[1.30rem]">
               <img
-                src={logoImage}
+                src={imagesrc}
                 className="w-[45px] rounded-[50%] object-cover max-[550px]:w-[40px]"
+                onClick={() => navigate(`/profile-details/${user?.UserID}`)}
               />
               <IoMdExit className="text-[32px] text-colors-color3 max-[550px]:text-[28px]" 
               onClick={() => dispatch(logOutAction())}/>

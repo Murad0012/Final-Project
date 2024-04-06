@@ -8,7 +8,8 @@ import logoImage from "../imgs/Logo.png";
 
 function SignUpForm() {
   const [checktype, setChecktype] = useState(true);
-  
+  const [error, setError] = useState(false);
+
   const navigate = useNavigate();
 
   // Show Password //
@@ -30,6 +31,7 @@ function SignUpForm() {
           navigate("/sign-in");
         })
         .catch((e) => console.log(e));
+        setError(true);
     },
     validationSchema: RegisterSchema,
   });
@@ -84,6 +86,11 @@ function SignUpForm() {
                 {formik.errors.userName}
               </div>
             ) : null}
+            {error && (
+            <p className="text-red-500 text-sm mt-1 max-[480px]:text-[12px]">
+              Username is taken
+            </p>
+            )}
           </div>
         </div>
         <div className="mb-2">

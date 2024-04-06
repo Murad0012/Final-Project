@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import { jwtDecode } from "jwt-decode";
 import { updateUser } from "../../redux/accountSlice";
+import { ProfileEditSchema } from '../../validations/profileEditSchema'
 import { UpdateUserDetailes } from "../../services/userInfoServices";
 import { getUserDetailes } from "../../services/userInfoServices";
 
@@ -84,6 +85,7 @@ function ProfileEdit() {
           console.log(e);
         });
     },
+    validationSchema: ProfileEditSchema
   });
 
   // User Check //
@@ -171,6 +173,9 @@ function ProfileEdit() {
               <p>
                 Characters remaining: {charCount}/{maxChars}
               </p>
+              {formik.touched.description && formik.errors.description ? (
+                <div className="text-red-500 ">{formik.errors.description}</div>
+              ) : null}
             </div>
 
             <div className="flex justify-end mb-10">

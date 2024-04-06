@@ -34,7 +34,7 @@ function PostEdit() {
     const fetchData = async () => {
       try {
         const result = await getPostDetailes(param.id);
-        console.log(result.data);
+        
         setPostDetails(result.data);
         setText(result.data?.caption || "");
         setCharCount(result.data?.caption ? result.data.caption.length : 0);

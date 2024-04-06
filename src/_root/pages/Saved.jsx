@@ -30,10 +30,10 @@ function Saved() {
         console.log(postsResponse.data);
 
         if(sort == "New"){
-          setSavedPosts(postsResponse.data.reverse());
+          setSavedPosts(postsResponse.data);
         }
         else{
-          setSavedPosts(postsResponse.data);
+          setSavedPosts(postsResponse.data.reverse());
         }
       } catch (error) {
         console.error("Error fetching posts:", error);
@@ -47,7 +47,7 @@ function Saved() {
       <div className="flex">
         <div className="flex flex-col items-center">
           <div className="w-[910px] py-8 flex items-center justify-between max-[950px]:w-[760px] max-[800px]:w-[610px] max-[650px]:w-[505px] max-[545px]:w-[385px] max-[410px]:w-[355px] max-[380px]:w-[310px]">
-            <h1 className="text-[30px] font-bold max-[650px]:text-[25px] max-[410px]:text-[23px]">
+            <h1 className="text-[30px] font-bold max-[650px]:text-[25px] max-[410px]:text-[23px] max-[380px]:hidden">
               Saved Posts
             </h1>
             <div className="min-w-[100px] relative marker:2em">
