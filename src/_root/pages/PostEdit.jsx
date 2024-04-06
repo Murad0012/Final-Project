@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
-import {
-  getPostDetailes,
-  UpdatePost,
-  DeletePost,
-} from "../../services/postServices";
-import { IoCreateOutline } from "react-icons/io5";
 import { useNavigate, useParams } from "react-router-dom";
-import { useFormik } from "formik";
 import { useSelector } from "react-redux";
+import { useFormik } from "formik";
 import { jwtDecode } from "jwt-decode";
+import { getPostDetailes, UpdatePost, DeletePost } from "../../services/postServices";
+
+import { IoCreateOutline } from "react-icons/io5";
 
 function PostEdit() {
-  // Character counter //
   const [text, setText] = useState("");
   const [charCount, setCharCount] = useState(0);
+  const [postDetails, setPostDetails] = useState(null);
+
+  const param = useParams();
+  const navigate = useNavigate();
+
+  const { token } = useSelector((state) => state.account);
+  const user = token != null ? jwtDecode(token) : null;
+
+  // Character counter //
   const maxChars = 400;
 
   const handleChange = (event) => {
@@ -25,10 +30,6 @@ function PostEdit() {
   const isLimitReached = charCount >= maxChars;
 
   // Post Info //
-  const param = useParams();
-
-  const [postDetails, setPostDetails] = useState(null);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,8 +46,6 @@ function PostEdit() {
   }, [param.id]);
 
   // Update Post //
-  const navigate = useNavigate();
-
   const formik = useFormik({
     initialValues: {
       caption: "",
@@ -79,14 +78,10 @@ function PostEdit() {
       })
       .catch((error) => {
         console.error("Error deleting post:", error);
-      }); 
+      });
   };
 
   // User Check //
-  const { token } = useSelector((state) => state.account);
-
-  const user = token != null ? jwtDecode(token) : null;
-
   useEffect(() => {
     if (postDetails && user && postDetails.userId !== user.UserID) {
       navigate("*");

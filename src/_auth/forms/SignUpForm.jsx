@@ -1,20 +1,20 @@
-import React from "react";
-import { useState } from "react";
-import img1 from "../imgs/Logo.png";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { Register } from "../../services/authServices";
 import { RegisterSchema } from "../../validations/registerSchema";
 
+import logoImage from "../imgs/Logo.png";
+
 function SignUpForm() {
   const [checktype, setChecktype] = useState(true);
+  
+  const navigate = useNavigate();
 
+  // Show Password //
   const handleClick = () => {
     setChecktype(!checktype);
   };
-
-  const navigate = useNavigate();
 
   // Register //
   const formik = useFormik({
@@ -37,7 +37,7 @@ function SignUpForm() {
   return (
     <div className="bg-colors-color1 px-10 py-14 rounded-3xl max-[480px]:w-[320px] max-[480px]:p-0 max-[380px]:w-[300px]">
       <div className="flex items-center justify-center gap-1">
-        <img src={img1} className="h-16 object-cover max-[380px]:h-14" />
+        <img src={logoImage} className="h-16 object-cover max-[380px]:h-14" />
         <h1 className="text-5xl font-semibold text-colors-color3  max-[380px]:text-4xl">
           Streaminny
         </h1>
@@ -62,7 +62,9 @@ function SignUpForm() {
               onChange={formik.handleChange}
             />
             {formik.touched.name && formik.errors.name ? (
-              <div className="text-red-500 text-sm mt-1 ml-1 max-[480px]:text-[12px]">{formik.errors.name}</div>
+              <div className="text-red-500 text-sm mt-1 ml-1 max-[480px]:text-[12px]">
+                {formik.errors.name}
+              </div>
             ) : null}
           </div>
           <div className="flex flex-col w-[45%]">
@@ -78,7 +80,9 @@ function SignUpForm() {
               onChange={formik.handleChange}
             />
             {formik.touched.userName && formik.errors.userName ? (
-              <div className="text-red-500 text-sm mt-1 ml-1 max-[480px]:text-[12px]">{formik.errors.userName}</div>
+              <div className="text-red-500 text-sm mt-1 ml-1 max-[480px]:text-[12px]">
+                {formik.errors.userName}
+              </div>
             ) : null}
           </div>
         </div>
@@ -95,8 +99,10 @@ function SignUpForm() {
             onChange={formik.handleChange}
           />
           {formik.touched.email && formik.errors.email ? (
-              <div className="text-red-500 text-sm mt-1 ml-1 max-[480px]:text-[12px]">{formik.errors.email}</div>
-            ) : null}
+            <div className="text-red-500 text-sm mt-1 ml-1 max-[480px]:text-[12px]">
+              {formik.errors.email}
+            </div>
+          ) : null}
         </div>
         <div>
           <label className="text-lg font-medium" htmlFor="password">
@@ -112,7 +118,9 @@ function SignUpForm() {
             onChange={formik.handleChange}
           />
           {formik.touched.password && formik.errors.password ? (
-              <div className="text-red-500 text-sm mt-1 ml-1 max-[480px]:text-[12px]">{formik.errors.password}</div>
+            <div className="text-red-500 text-sm mt-1 ml-1 max-[480px]:text-[12px]">
+              {formik.errors.password}
+            </div>
           ) : null}
         </div>
         <div className="mt-4 flex gap-1">

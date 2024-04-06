@@ -1,31 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getUserDetailes } from "../../services/userInfoServices";
 import { useSelector, useDispatch } from "react-redux";
 import { jwtDecode } from "jwt-decode";
+import { getUserDetailes } from "../../services/userInfoServices";
 import { FollowUser, CheckFollow,UnFollowUser } from "../../services/followService"; 
 
-
-import img1 from "../imgs/Default Profile.jpg";
 import { IoCreateOutline } from "react-icons/io5";
-import { FaRegHeart } from "react-icons/fa";
+import defaultProfile from "../imgs/Default Profile.jpg";
 
 function ProfileDetails() {
-  // User Info //
+  const [userDetails, setUserDetails] = useState(null);
+  const [isFollowing, setIsFollowing] = useState(false);
+
   const param = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [userDetails, setUserDetails] = useState(null);
-  const [isFollowing, setIsFollowing] = useState(false);
-
-  // User owner check //
   const { token } = useSelector((state) => state.account);
-
   const user = token != null ? jwtDecode(token) : null;
 
-  const checkOwner = user && user.UserID === param.id;
-
+  // Get User Detailes //
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,11 +36,7 @@ function ProfileDetails() {
     fetchData();
   }, [param.id]);
 
-  let imagesrc = userDetails?.profileImg
-    ? "https://localhost:7018/Imgs/" + userDetails.profileImg
-    : img1;
-
-  // Follow //
+  // Follow User //
   const handleFollow = async () => {
     try {
       await FollowUser(param.id, user.UserID);
@@ -59,7 +49,7 @@ function ProfileDetails() {
     }
   };
 
-  // Unfollow //
+  // Unfollow  User //
   const handleUnFollow = async () => {
     try {
       await UnFollowUser(param.id, user.UserID);
@@ -72,12 +62,19 @@ function ProfileDetails() {
     }
   };
 
+  // User owner check //
+  const checkOwner = user && user.UserID === param.id;
+
   return (
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px] max-[1080px]:mb-[60px]">
       <div className="flex flex-col">
         <div className="w-[910px]  flex gap-6 py-8 mb-[20px] max-[980px]:w-[790px] max-[830px]:w-[640px] max-[680px]:w-[520px] max-[550px]:w-[400px] max-[450px]:w-[300px]">
           <img
-            src={imagesrc}
+            src={
+              userDetails?.profileImg
+                ? "https://localhost:7018/Imgs/" + userDetails?.profileImg
+                : defaultProfile
+            }
             className="w-[120px] h-[120px] rounded-[50%] max-[550px]:w-[100px] max-[550px]:h-[100px] max-[450px]:w-[80px] max-[450px]:h-[80px]"
           />
           <div className="flex flex-col pt-[10px] w-[100%]">

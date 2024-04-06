@@ -1,18 +1,24 @@
 import React, { useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
-import { Create } from '../../services/postServices'
 import { useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
 import { useFormik } from "formik";
-import { CreatePostSchema } from '../../validations/createPostSchema'
-import { useNavigate } from "react-router-dom";
+import { Create } from "../../services/postServices";
+import { CreatePostSchema } from "../../validations/createPostSchema";
 
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 
 function CreatePost() {
-  // Character counter //
   const [text, setText] = useState("");
   const [charCount, setCharCount] = useState(0);
+
+  const navigate = useNavigate();
+
+  const { token } = useSelector((state) => state.account);
+  const user = token != null ? jwtDecode(token) : null;
+
+  // Character counter //
   const maxChars = 400;
 
   const handleChange = (event) => {
@@ -23,31 +29,25 @@ function CreatePost() {
 
   const isLimitReached = charCount >= maxChars;
 
-  // Create Post // 
-  const navigate = useNavigate();
-
-  const { token } = useSelector((state) => state.account);
-
-  const user = token != null ? jwtDecode(token) : null;
-
+  // Create Post //
   const formik = useFormik({
-    initialValues:{
-      caption:"",
+    initialValues: {
+      caption: "",
       img: null,
-      tags:"",
-      userId: user?.UserID
+      tags: "",
+      userId: user?.UserID,
     },
-    onSubmit:(values) => {
-      console.log(values)
-      Create(values).then(()=>{
-        navigate("/home")
-      }).catch(e => console.log(e));
+    onSubmit: (values) => {
+      Create(values)
+        .then(() => {
+          navigate("/home");
+        })
+        .catch((e) => console.log(e));
     },
-    validationSchema:CreatePostSchema
-  })
+    validationSchema: CreatePostSchema,
+  });
 
-  console.log(formik.errors)
-
+  // DropZone //
   const onDrop = useCallback(
     (acceptedFiles) => {
       const imgFile = acceptedFiles[0];
@@ -92,7 +92,7 @@ function CreatePost() {
                 Characters remaining: {charCount}/{maxChars}
               </p>
               {formik.touched.caption && formik.errors.caption ? (
-              <div className="text-red-500 ">{formik.errors.caption}</div>
+                <div className="text-red-500 ">{formik.errors.caption}</div>
               ) : null}
             </div>
             <div className="flex flex-col gap-2 ">
@@ -118,7 +118,7 @@ function CreatePost() {
                 )}
               </div>
               {formik.touched.img && formik.errors.img ? (
-              <div className="text-red-500 ">{formik.errors.img}</div>
+                <div className="text-red-500 ">{formik.errors.img}</div>
               ) : null}
             </div>
             <div className="flex flex-col gap-2">
@@ -132,7 +132,7 @@ function CreatePost() {
                 placeholder="art,game,movie"
               ></input>
               {formik.touched.tags && formik.errors.tags ? (
-              <div className="text-red-500 ">{formik.errors.tags}</div>
+                <div className="text-red-500 ">{formik.errors.tags}</div>
               ) : null}
             </div>
             <div className=" flex justify-end mb-10">

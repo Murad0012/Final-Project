@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { IoCreateOutline } from "react-icons/io5";
-import { getUserDetailes } from "../../services/userInfoServices";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
-import { useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
-import { UpdateUserDetailes } from "../../services/userInfoServices";
 import { updateUser } from "../../redux/accountSlice";
-import { useDispatch } from "react-redux";
+import { UpdateUserDetailes } from "../../services/userInfoServices";
+import { getUserDetailes } from "../../services/userInfoServices";
+
+import { IoCreateOutline } from "react-icons/io5";
 
 function ProfileEdit() {
-  // Character counter //
+  const [error, setError] = useState(false);
+  const [userDetails, setUserDetails] = useState(null);
   const [text, setText] = useState("");
   const [charCount, setCharCount] = useState(0);
+
+  const navigate = useNavigate();
+  const param = useParams();
+  const dispatch = useDispatch();
+
+  const { token } = useSelector((state) => state.account);
+  const user = token != null ? jwtDecode(token) : null;
+
+  // Character counter //
   const maxChars = 200;
 
   const handleChange = (event) => {
@@ -21,14 +31,9 @@ function ProfileEdit() {
     setCharCount(inputValue.length);
   };
 
-  const navigate = useNavigate();
-
   const isLimitReached = charCount >= maxChars;
 
   // User Get Info //
-  const [userDetails, setUserDetails] = useState(null);
-  const param = useParams();
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,10 +50,7 @@ function ProfileEdit() {
     fetchData();
   }, [param.id]);
 
-  // User Put Info //
-  const [error, setError] = useState(false);
-  const dispatch = useDispatch();
-
+  // User Update Info //
   const formik = useFormik({
     initialValues: {
       userName: "",
@@ -67,10 +69,10 @@ function ProfileEdit() {
       if (values.description == "") {
         values.description = userDetails?.description;
       }
-      if (values.profileImg === null) {
-        values.profileImg = userDetails?.profileImg;
+      if (values.profileImg == null) {
+        values.profileImg = new File([], "empty_file");
       }
-        
+
       UpdateUserDetailes(values)
         .then((res) => {
           dispatch(updateUser(values.userName));
@@ -85,10 +87,6 @@ function ProfileEdit() {
   });
 
   // User Check //
-  const { token } = useSelector((state) => state.account);
-
-  const user = token != null ? jwtDecode(token) : null;
-
   useEffect(() => {
     if (userDetails && user && param.id !== user.UserID) {
       navigate("*");

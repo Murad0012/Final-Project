@@ -1,33 +1,32 @@
-import React, { useState,useEffect } from "react";
-import { Outlet } from "react-router-dom";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
+import { logOutAction } from "../redux/accountSlice";
 import { getUserDetailes } from "../services/userInfoServices";
-
-import img1 from "../_root/imgs/Streaminny Logo.png";
-import img2 from "../_root/imgs/Default Profile.jpg";
 
 import { BsFillHouseFill } from "react-icons/bs";
 import { MdExplore, MdAddPhotoAlternate } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
 import { HiOutlineSave } from "react-icons/hi";
 import { IoMdExit } from "react-icons/io";
-import { logOutAction } from "../redux/accountSlice";
+import logoImage from "../_root/imgs/Streaminny Logo.png";
+import defaultProfile from "../_root/imgs/Default Profile.jpg";
 
 function RootLayout() {
-  // Page active style // 
-  const path = useLocation();
-  const res = path.pathname.toLowerCase();
-  const navigate = useNavigate();
-
-  // User Info // 
-  const { userName, token } = useSelector((state) => state.account);
-
-  const user = token != null ? jwtDecode(token) : null;
-
   const [userDetails, setUserDetails] = useState(null);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  
+  const { userName, token } = useSelector((state) => state.account);
+  const user = token != null ? jwtDecode(token) : null;
+  
+  // Page Active Style //
+  const path = useLocation();
+  const res = path.pathname.toLowerCase();
+
+  // User Info // 
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -40,25 +39,23 @@ function RootLayout() {
     fetchData();
   }, [user?.UserID]);
 
-  let imagesrc = userDetails?.profileImg ? "https://localhost:7018/Imgs/" + userDetails.profileImg : img2;
+  let imagesrc = userDetails?.profileImg ? "https://localhost:7018/Imgs/" + userDetails.profileImg : defaultProfile;
 
-  const dispatch = useDispatch()
   return (
     <div className="flex flex-col max-[800px]:bg-colors-color1">
       <div className="w-screen fixed hidden max-[1080px]:block z-50">
         <div className="flex items-center bg-colors-color1 h-[60px] justify-center">
           <div className="flex w-[95%] justify-between">
             <div className="flex items-center gap-1">
-              <img src={img1} className="w-[40px]" />
+              <img src={logoImage} className="w-[40px]" />
               <h1 className="text-[22px] text-colors-color3 font-bold">
                 Streaminny
               </h1>
             </div>
             <div className="flex items-center gap-[1.30rem]">
               <img
-                src={img1}
+                src={logoImage}
                 className="w-[45px] rounded-[50%] object-cover max-[550px]:w-[40px]"
-                onClick={() => navigate("/profile-details/1")}
               />
               <IoMdExit className="text-[32px] text-colors-color3 max-[550px]:text-[28px]" 
               onClick={() => dispatch(logOutAction())}/>
@@ -133,7 +130,7 @@ function RootLayout() {
         <div className="h-[95%] flex flex-col justify-between w-fit">
           <div className="w-fit flex flex-col gap-[40px] mt-[10px] max-[1590px]:items-center">
             <div className="flex items-center w-fit gap-2">
-              <img src={img1} className="w-[52px]" />
+              <img src={logoImage} className="w-[52px]" />
               <h1 className="text-[28px] font-bold text-colors-color3 max-[1590px]:hidden">
                 Streaminny
               </h1>

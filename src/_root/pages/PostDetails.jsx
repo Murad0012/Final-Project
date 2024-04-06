@@ -1,40 +1,37 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getPostDetailes } from "../../services/postServices";
-import { LikePost, UnLikePost, CheckLike } from "../../services/likeService";
-import { SavedPost, UnSavedPost, CheckSave } from "../../services/savedService"; 
 import { useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
-import { AddComment } from "../../services/commentService";
 import { useFormik } from "formik";
+import { AddComment } from "../../services/commentService";
+import { getPostDetailes } from "../../services/postServices";
+import { LikePost, UnLikePost, CheckLike } from "../../services/likeService";
+import { SavedPost, UnSavedPost, CheckSave } from "../../services/savedService";
 
 import { FaHeart } from "react-icons/fa";
 import { HiAdjustments } from "react-icons/hi";
 import { HiOutlineSave } from "react-icons/hi";
-import img1 from "../imgs/Default Profile.jpg";
+import defaultProfile from "../imgs/Default Profile.jpg";
 
 function PostDetails() {
-  // Post Info //
   const [postDetails, setPostDetails] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-
-  const { token } = useSelector((state) => state.account);
-
-  const user = token != null ? jwtDecode(token) : null;
+  const [commentIsEmpty, setCommentIsEmpty] = useState(true);
 
   const param = useParams();
-
   const navigate = useNavigate();
 
+  const { token } = useSelector((state) => state.account);
+  const user = token != null ? jwtDecode(token) : null;
+
   const checkOwner = user && user.UserID === postDetails?.userId;
-  
+
+  // Get Post //
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await getPostDetailes(param.id);
-        console.log(result.data);
         setPostDetails(result.data);
 
         const isLiked = await CheckLike(param.id, user.UserID);
@@ -73,11 +70,11 @@ function PostDetails() {
   const handleLike = async () => {
     try {
       await LikePost(param.id, user.UserID);
-      setIsLiked(false)
+      setIsLiked(false);
 
-      setPostDetails(prevState => ({
+      setPostDetails((prevState) => ({
         ...prevState,
-        likeCount: prevState.likeCount + 1 
+        likeCount: prevState.likeCount + 1,
       }));
     } catch (error) {
       console.error("Error following user:", error);
@@ -88,11 +85,11 @@ function PostDetails() {
   const handleUnLike = async () => {
     try {
       await UnLikePost(param.id, user.UserID);
-      setIsLiked(true)
+      setIsLiked(true);
 
-      setPostDetails(prevState => ({
+      setPostDetails((prevState) => ({
         ...prevState,
-        likeCount: prevState.likeCount - 1
+        likeCount: prevState.likeCount - 1,
       }));
     } catch (error) {
       console.error("Error following user:", error);
@@ -103,20 +100,26 @@ function PostDetails() {
   const handleSavePost = async () => {
     try {
       await SavedPost(param.id, user.UserID);
-      setIsSaved(false)
+      setIsSaved(false);
     } catch (error) {
       console.error("Error following user:", error);
     }
   };
 
+  // Unsave Post //
   const handleUnSavePost = async () => {
     try {
       await UnSavedPost(param.id, user.UserID);
-      setIsSaved(true)
+      setIsSaved(true);
     } catch (error) {
       console.error("Error following user:", error);
     }
   };
+
+  // Comment Empty Check //
+  useEffect(() => {
+    setCommentIsEmpty(formik.values.description.trim() === "");
+  }, [formik.values.description]);
 
   return (
     <div className="w-auto min-h-screen h-fit ml-[300px] flex justify-center max-[1590px]:ml-[120px] max-[1080px]:ml-0 max-[1080px]:mt-[60px]">
@@ -126,7 +129,7 @@ function PostDetails() {
             src={
               postDetails?.userProfileImg
                 ? "https://localhost:7018/Imgs/" + postDetails?.userProfileImg
-                : img1
+                : defaultProfile
             }
             className="rounded-[50%] w-[45px] h-[45px] object-cover"
           />
@@ -177,9 +180,12 @@ function PostDetails() {
           </div>
           <div className="flex gap-2 items-center">
             {isSaved ? (
-              <HiOutlineSave className="text-[30px]" onClick={handleSavePost}/>
+              <HiOutlineSave className="text-[30px]" onClick={handleSavePost} />
             ) : (
-              <HiOutlineSave className="text-[30px] text-colors-color3" onClick={handleUnSavePost}/>
+              <HiOutlineSave
+                className="text-[30px] text-colors-color3"
+                onClick={handleUnSavePost}
+              />
             )}
             <h3 className="font-bold text-colors-color3">Save</h3>
           </div>
@@ -189,10 +195,10 @@ function PostDetails() {
             <div key={index} className="flex flex-col gap-1">
               <div className="flex items-center gap-2">
                 <img
-                  src={ 
+                  src={
                     comment.userProfileImg
                       ? "https://localhost:7018/Imgs/" + comment.userProfileImg
-                      : img1
+                      : defaultProfile
                   }
                   className="rounded-[50%] w-[50px] h-[50px] object-cover"
                 />
@@ -217,9 +223,12 @@ function PostDetails() {
           />
           <button
             onClick={formik.handleSubmit}
-            className="p-1 px-3 rounded-[8px] bg-colors-color3"
+            className={`p-1 px-3 rounded-[8px] bg-colors-color3 ${
+              commentIsEmpty ? "cursor-not-allowed opacity-50" : ""
+            }`}
+            disabled={commentIsEmpty}
           >
-            Post
+            Sent
           </button>
         </div>
       </div>

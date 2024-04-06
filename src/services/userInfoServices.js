@@ -23,6 +23,6 @@ export const DeleteUser = (userId) => {
     return httpClient.delete(`Account/DeleteUser?id=${userId}`);
 };
 
-export const GetUsers = () => {
-    return httpClient.get(`Account/GetUsers`);
+export const GetUsers = (userId) => {
+    return httpClient.get(`Account/GetUsers?id=${userId}`);
 };

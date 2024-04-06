@@ -1,37 +1,23 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 import { useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 import { GetNonFollowedUsers } from "../../services/userInfoServices";
 import { getPosts } from "../../services/postServices";
-
-import img1 from "../imgs/Default Profile.jpg";
-import img3 from "../imgs/Netflix logo.jpg";
-import img4 from "../imgs/netflixPost.png";
 
 import { FaHeart } from "react-icons/fa";
 import { HiOutlineSave } from "react-icons/hi";
 import { BiCommentDetail } from "react-icons/bi";
+import defaultProfile from "../imgs/Default Profile.jpg";
 
 function Home() {
-  const [isClicked, setIsClicked] = useState(true);
-
-  const handleClick = () => {
-    setIsClicked(!isClicked);
-  };
-
-  const navigate = useNavigate();
-
-  // Show User //
-  const { token } = useSelector((state) => state.account);
-
-  const user = token != null ? jwtDecode(token) : null;
-
   const [nonFollowedUsers, setNonFollowedUsers] = useState([]);
   const [posts, setPosts] = useState([]);
 
-  console.log(user.UserID);
+  const navigate = useNavigate();
+
+  const { token } = useSelector((state) => state.account);
+  const user = token != null ? jwtDecode(token) : null;
 
   // Show Users //
   useEffect(() => {
@@ -82,7 +68,7 @@ function Home() {
                           item.userProfileImg
                             ? "https://localhost:7018/Imgs/" +
                               item.userProfileImg
-                            : img1
+                            : defaultProfile
                         }
                         className="w-[54px] h-[54px] rounded-[50%] object-cover max-[550px]:w-[45px] max-[550px]:h-[45px]"
                       />
@@ -146,7 +132,7 @@ function Home() {
                   src={
                     user.profileImg
                       ? "https://localhost:7018/Imgs/" + user.profileImg
-                      : img1
+                      : defaultProfile
                   }
                   className="rounded-[50%] w-[50px] h-[50px] object-cover"
                 />

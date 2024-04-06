@@ -1,30 +1,28 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { GetSavedPosts } from "../../services/savedService";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
+import { GetSavedPosts } from "../../services/savedService";
 
 import { IoIosArrowDown } from "react-icons/io";
-
 import img1 from "../imgs/Default Profile.jpg";
 
 function Saved() {
   const [isClicked, setIsClicked] = useState(false);
   const [savedPosts, setSavedPosts] = useState([]);
   const [sort, setSort] = useState("New");
+
   const navigate = useNavigate();
 
   const { token } = useSelector((state) => state.account);
-
   const user = token != null ? jwtDecode(token) : null;
 
+  // Drpdown //
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
 
-  console.log(user.UserID);
-
+  // Get Saved Posts //
   useEffect(() => {
     const fetchData = async () => {
       try {

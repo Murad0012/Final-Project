@@ -1,35 +1,33 @@
-import React, { useState,useEffect } from "react";
-import { Outlet } from "react-router-dom";
-import { useDispatch,useSelector } from "react-redux";
-import { getUserDetailes } from "../services/userInfoServices";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { jwtDecode } from "jwt-decode";
-import { DeleteUser,GetUsers } from '../services/userInfoServices'
-
-import img1 from "../_root/imgs/Streaminny Logo.png";
-import img2 from "../_root/imgs/Profile.jpg";
+import { logOutAction } from "../redux/accountSlice";
+import { getUserDetailes } from "../services/userInfoServices";
+import { GetUsers } from "../services/userInfoServices";
 
 import { FaUsersCog } from "react-icons/fa";
 import { IoMdExit } from "react-icons/io";
+import logoImage from "../_root/imgs/Streaminny Logo.png";
+import defaultProfile from "../_root/imgs/Default Profile.jpg";
 
 function AdminLayout() {
+  const [users, setUsers] = useState([]);
+  const [userDetails, setUserDetails] = useState(null);
+
   const path = useLocation();
   const res = path.pathname.toLowerCase();
 
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
-  // User Info // 
   const { userName, token, role } = useSelector((state) => state.account);
-
-  console.log(role)
-
-  if(role == "User"){
-    navigate("*")
-  }
-
   const user = token != null ? jwtDecode(token) : null;
 
-  const [userDetails, setUserDetails] = useState(null);
+  // User Info //
+  if (role == "User") {
+    navigate("*");
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,11 +41,7 @@ function AdminLayout() {
     fetchData();
   }, [user?.UserID]);
 
-  let imagesrc = userDetails?.profileImg ? "https://localhost:7018/Imgs/" + userDetails.profileImg : img2;
-
   // Get Users //
-  const [users, setUsers] = useState([]);
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -66,14 +60,18 @@ function AdminLayout() {
         <div className="flex items-center bg-colors-color1 h-[60px] justify-center">
           <div className="flex w-[95%] justify-between">
             <div className="flex items-center gap-1">
-              <img src={img1} className="w-[40px]" />
+              <img src={logoImage} className="w-[40px]" />
               <h1 className="text-[22px] text-colors-color3 font-bold">
                 Streaminny
               </h1>
             </div>
             <div className="flex items-center gap-[1.30rem]">
               <img
-                src={img2}
+                src={
+                  userDetails?.profileImg
+                    ? `https://localhost:7018/Imgs/${userDetails?.profileImg}`
+                    : defaultProfile
+                }
                 className="w-[45px] rounded-[50%] object-cover max-[550px]:w-[40px]"
               />
               <IoMdExit className="text-[32px] text-colors-color3 max-[550px]:text-[28px]" />
@@ -106,22 +104,26 @@ function AdminLayout() {
         <div className="h-[95%] flex flex-col justify-between w-fit">
           <div className="w-fit flex flex-col gap-[40px] mt-[10px] max-[1590px]:items-center">
             <div className="flex items-center w-fit gap-2">
-              <img src={img1} className="w-[52px]" />
+              <img src={logoImage} className="w-[52px]" />
               <h1 className="text-[28px] font-bold text-colors-color3 max-[1590px]:hidden">
                 Streaminny
               </h1>
             </div>
             <div
               className="flex gap-2 w-fit cursor-default"
-              onClick={() => navigate("/profile-details/1")}
+              onClick={() => navigate(`/profile-details/${user?.UserID}`)}
             >
               <img
-                src={imagesrc}
+                src={
+                  userDetails?.profileImg
+                    ? `https://localhost:7018/Imgs/${userDetails?.profileImg}`
+                    : defaultProfile
+                }
                 className="w-[54px] rounded-full object-cover ml-2 max-[1590px]:ml-0"
               />
-              <div className="flex flex-col justify-center max-[1590px]:hidden">
-              <h1 className="text-xl font-bold ">{userName}</h1>
-              <h3 className="text-gray-500 ">@{userName?.toLowerCase()}</h3>
+              <div className="flex flex-col justify-center max-[1590px]:hidden" >
+                <h1 className="text-xl font-bold ">{userName}</h1>
+                <h3 className="text-gray-500 ">@{userName?.toLowerCase()}</h3>
               </div>
             </div>
             <ul className="flex flex-col gap-[20px] w-[260px] max-[1590px]:w-[65px] ">
@@ -142,7 +144,8 @@ function AdminLayout() {
               </li>
             </ul>
           </div>
-          <div className="flex rounded-[8px] gap-4 p-4 hover:bg-[#211e21]">
+          <div className="flex rounded-[8px] gap-4 p-4 hover:bg-[#211e21]"
+          onClick={() => dispatch(logOutAction())}>
             <IoMdExit className="text-[32px] text-colors-color3" />
             <h1 className="text-xl max-[1590px]:hidden">Logout</h1>
           </div>

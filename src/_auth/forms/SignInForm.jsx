@@ -1,26 +1,25 @@
-import React from "react";
-import { useState } from "react";
-import img1 from "../imgs/Logo.png";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { Login } from "../../services/authServices";
-import { useDispatch } from "react-redux";
 import { logInAction } from "../../redux/accountSlice";
 
-function SignInForm() {
-  const navigate = useNavigate();
+import logoImage from "../imgs/Logo.png";
 
-  // Show Password //
+function SignInForm() {
+  const [error, setError] = useState(false);
   const [checktype, setChecktype] = useState(true);
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // Show Password //
   const handleClick = () => {
     setChecktype(!checktype);
   };
 
   // Login //
-  const dispatch = useDispatch();
-  const [error, setError] = useState(false);
-
   const formik = useFormik({
     initialValues: {
       userName: "",
@@ -29,7 +28,7 @@ function SignInForm() {
     onSubmit: (values) => {
       Login(values)
         .then((res) => {
-          console.log(res.data)
+          console.log(res.data);
           dispatch(logInAction(res.data));
           navigate("/home");
         })
@@ -42,7 +41,7 @@ function SignInForm() {
   return (
     <div className="bg-colors-color1 px-10 py-14 rounded-3xl max-[480px]:w-[320px] max-[480px]:p-0 max-[380px]:w-[300px]">
       <div className="flex items-center justify-center gap-1">
-        <img src={img1} className="h-16 object-cover max-[380px]:h-14" />
+        <img src={logoImage} className="h-16 object-cover max-[380px]:h-14" />
         <h1 className="text-5xl font-semibold text-colors-color3 max-[380px]:text-4xl">
           Streaminny
         </h1>
